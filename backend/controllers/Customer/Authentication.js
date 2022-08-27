@@ -105,4 +105,6 @@ const registerUser = async (req, res) => {
     // Our register logic ends here
 };
 
+
 module.exports = { userLogin, registerUser }
+

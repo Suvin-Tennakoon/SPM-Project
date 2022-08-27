@@ -10,5 +10,4 @@ customerRoutes.put('/:id', updateUser);
 customerRoutes.get('/', getUserByEmail);
 customerRoutes.post('/login', userLogin);
 
-
 module.exports = customerRoutes;
