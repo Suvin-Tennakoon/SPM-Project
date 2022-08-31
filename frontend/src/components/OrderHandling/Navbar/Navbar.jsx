@@ -1,6 +1,27 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 export default function NavBar() {
+
+    const navigate = useNavigate();
+
+    let accountType = localStorage.getItem('AccountType');
+
+    const handleLogOut = () => {
+        localStorage.removeItem("Token");
+        localStorage.removeItem("AccountType");
+        localStorage.removeItem("Email");
+        localStorage.removeItem("Status");
+        localStorage.removeItem("Id");
+        // alert('Logged Out...');
+        Swal.fire({
+            icon: 'success',
+            title: 'Logged Out!'
+        })
+        navigate("/");
+    }
+
     return (
         <nav className="custom-navbar navbar navbar-expand-lg navbar-dark fixed-top" data-spy="affix" data-offset-top="10">
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +57,13 @@ export default function NavBar() {
                     <a className="nav-link" href="#contact">Contact Us</a>
                 </li>
                 <li className="nav-item">
-                    <a href="components.html" className="btn btn-primary ml-xl-4">Components</a>
+                    <a href="/signup" style={{display: !(accountType) ? "flex" : "none"}} className="btn btn-primary btn-sm ml-4">Sign Up</a>
+                </li>
+                <li className="nav-item">
+                    <a href="/login" style={{display: !(accountType) ? "flex" : "none"}} className="btn btn-primary btn-sm ml-4">Login</a>
+                </li>
+                <li className="nav-item">
+                    <a onClick={handleLogOut} style={{display: accountType ? "flex" : "none"}} className="btn btn-primary btn-sm ml-4">LogOut</a>
                 </li>
             </ul>
         </div>
