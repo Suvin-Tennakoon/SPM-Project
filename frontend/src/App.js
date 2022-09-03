@@ -8,6 +8,8 @@ import UpdatePassword from './components/CustomerHandling/UpdatePassword';
 import UserProfile from './components/CustomerHandling/UserProfile';
 import UpdateProf from './components/CustomerHandling/UpdateProf';
 import PrevOrders from './components/CustomerHandling/PrevOrders';
+import Reviews from './components/OrderHandling/Reviews/Reviews';
+import GiveReview from './components/OrderHandling/Reviews/GiveReview';
 
 export default function App() {
   return (
@@ -21,6 +23,8 @@ export default function App() {
             <Route path='/userprof' element={<UserProfile />}></Route>
             <Route path='/updateprof/:id' element={<UpdateProf />}></Route>
             <Route path='/prevorders' element={<PrevOrders />}></Route>
+            <Route path='/orderreview' element={<Reviews />}></Route>
+            <Route path='/givereview' element={<GiveReview />}></Route>
           </Routes>
     </div>
   );

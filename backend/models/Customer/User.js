@@ -41,6 +41,10 @@ const IUser = new mongoose.Schema({
     accountType: {
         type: String
     },
+    
+    img: { 
+        type: String
+    }
 });
 
 module.exports = mongoose.model("Users", IUser);

@@ -70,7 +70,7 @@ const UpdatePassword = () => {
 
             console.log("Sending Password and Status Data...", dataSet);
             let data = await axios
-                .put(`http://localhost:3001/api/customers/${id}`, {
+                .put(`http://localhost:3001/api/customers/pass/${id}`, {
                     password: password,
                     status: '1',
                 })
