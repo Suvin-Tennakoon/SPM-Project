@@ -3,7 +3,7 @@ import React from "react";
 export default function Reviews() {
 
     return (
-        <div id="testmonial" className="container-fluid wow fadeIn bg-dark text-light has-height-lg middle-items">
+        <div id="testmonial" className="container-fluid wow fadeIn bg-dark text-light has-height-lg middle-items" style={{ marginTop: "80px" }}>
         <h2 className="section-title my-5 text-center">REVIEWS</h2>
         <div className="row mt-3 mb-5">
             <div className="col-md-4 my-3 my-md-0">
