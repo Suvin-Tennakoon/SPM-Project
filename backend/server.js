@@ -1,10 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require('cors');
+const cors = require("cors");
 
 const app = express();
 
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
 app.use(cors());
 
 mongoose
@@ -14,25 +14,23 @@ mongoose
   )
   .then(() => {
     console.log("Mongo DB Connected");
-  }).catch(err=>[
-    console.log(err)
-  ]);
+  })
+  .catch((err) => [console.log(err)]);
 
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
-    console.log("Server is Running");
+  console.log("Server is Running");
 });
 
+const orderRoutes = require("./routes/order.router");
+app.use("/api/orders", orderRoutes);
 
-const orderRoutes = require('./routes/order.router');
-app.use('/api/orders', orderRoutes);
+const customerRoutes = require("./routes/customer.router");
+app.use("/api/customers", customerRoutes);
 
-const customerRoutes = require('./routes/customer.router');
-app.use('/api/customers', customerRoutes);
+const shopRoutes = require("./routes/shop.router");
+app.use("/api/shops", shopRoutes);
 
-const shopRoutes = require('./routes/shop.router');
-app.use('/api/shops', shopRoutes);
-
-const paymentRoutes = require('./routes/payment.router');
-app.use('/api/payments', paymentRoutes);
+const paymentRoutes = require("./routes/payment.router");
+app.use("/api/payments", paymentRoutes);
