@@ -5,7 +5,7 @@ import PlaceOrder from "./components/OrderHandling/PlaceOrder/PlaceOrder";
 import Compo from "./components/OrderHandling/Compo/Components";
 import OrderList from "./components/OrderHandling/SellersOrders/OrderList";
 
-function App() {
+export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />}></Route>
@@ -15,5 +15,3 @@ function App() {
     </Routes>
   );
 }
-
-export default App;

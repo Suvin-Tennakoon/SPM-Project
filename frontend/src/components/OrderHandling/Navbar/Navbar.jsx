@@ -1,6 +1,26 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function NavBar() {
+  const navigate = useNavigate();
+
+  let accountType = localStorage.getItem("AccountType");
+
+  const handleLogOut = () => {
+    localStorage.removeItem("Token");
+    localStorage.removeItem("AccountType");
+    localStorage.removeItem("Email");
+    localStorage.removeItem("Status");
+    localStorage.removeItem("Id");
+    // alert('Logged Out...');
+    Swal.fire({
+      icon: "success",
+      title: "Logged Out!",
+    });
+    navigate("/");
+  };
+
   return (
     <nav
       className="custom-navbar navbar navbar-expand-lg navbar-dark fixed-top"
@@ -41,7 +61,7 @@ export default function NavBar() {
             </a>
           </li>
         </ul>
-        <a className="navbar-brand m-auto" href="/">
+        <a className="navbar-brand m-auto" href="#">
           <img src="assets/imgs/logo.png" className="brand-img" alt=""></img>
           <span className="brand-txt">Cake Hut</span>
         </a>
@@ -62,8 +82,30 @@ export default function NavBar() {
             </a>
           </li>
           <li className="nav-item">
-            <a href="/components" className="btn btn-primary ml-xl-4">
-              Components
+            <a
+              href="/signup"
+              style={{ display: !accountType ? "flex" : "none" }}
+              className="btn btn-primary btn-sm ml-4"
+            >
+              Sign Up
+            </a>
+          </li>
+          <li className="nav-item">
+            <a
+              href="/login"
+              style={{ display: !accountType ? "flex" : "none" }}
+              className="btn btn-primary btn-sm ml-4"
+            >
+              Login
+            </a>
+          </li>
+          <li className="nav-item">
+            <a
+              onClick={handleLogOut}
+              style={{ display: accountType ? "flex" : "none" }}
+              className="btn btn-primary btn-sm ml-4"
+            >
+              LogOut
             </a>
           </li>
         </ul>
