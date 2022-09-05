@@ -57,18 +57,18 @@ export default function NavBar() {
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#book-table">
-              Book-Table
+              Place Order
             </a>
           </li>
         </ul>
-        <a className="navbar-brand m-auto" href="#">
+        <a className="navbar-brand m-auto" href="/">
           <img src="assets/imgs/logo.png" className="brand-img" alt=""></img>
           <span className="brand-txt">Cake Hut</span>
         </a>
         <ul className="navbar-nav">
           <li className="nav-item">
             <a className="nav-link" href="#blog">
-              Blog<span className="sr-only">(current)</span>
+              Promo<span className="sr-only">(current)</span>
             </a>
           </li>
           <li className="nav-item">
