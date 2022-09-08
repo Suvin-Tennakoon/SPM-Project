@@ -39,7 +39,7 @@ export default function NavBar() {
                     <a className="nav-link" href="#gallary">Gallary</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="#book-table">Book-Table</a>
+                    <a className="nav-link" href="#book-table">Place Order</a>
                 </li>
             </ul>
             <a className="navbar-brand m-auto" href="#">
@@ -48,19 +48,19 @@ export default function NavBar() {
             </a>
             <ul className="navbar-nav">
                 <li className="nav-item">
-                    <a className="nav-link" href="#blog">Blog<span className="sr-only">(current)</span></a>
+                    <a className="nav-link" href="#blog">Promo<span className="sr-only">(current)</span></a>
                 </li>
                 <li className="nav-item">
                     <a className="nav-link" href="#testmonial">Reviews</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="#contact">Contact Us</a>
+                    <a className="nav-link" href="#contact">Contact</a>
                 </li>
                 <li className="nav-item">
-                    <a href="/signup" style={{display: !(accountType) ? "flex" : "none"}} className="btn btn-primary btn-sm ml-4">Sign Up</a>
+                    <a href="/signup" style={{display: !(accountType) ? "flex" : "none"}} className="btn btn-primary btn-sm ml-2">Sign Up</a>
                 </li>
                 <li className="nav-item">
-                    <a href="/login" style={{display: !(accountType) ? "flex" : "none"}} className="btn btn-primary btn-sm ml-4">Login</a>
+                    <a href="/login" style={{display: !(accountType) ? "flex" : "none"}} className="btn btn-primary btn-sm ml-2">Sign In</a>
                 </li>
                 <li className="nav-item">
                     <a onClick={handleLogOut} style={{display: accountType ? "flex" : "none"}} className="btn btn-primary btn-sm ml-4">LogOut</a>

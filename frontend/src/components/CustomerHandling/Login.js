@@ -23,7 +23,7 @@ export default function Login() {
 
     const onSubmit = async (e) => {
 
-        setIsLoading(true);
+        //setIsLoading(true);
         e.preventDefault();
 
         console.log("Inserted Data: ", formData)
@@ -59,33 +59,35 @@ export default function Login() {
                     }
                 }
                 catch (err) {
+                    //setIsLoading(false);
                     console.log(err);
-                    //alert("Error While Logging!!!", err);
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Login Failed!',
-                        text: 'Oops... Error While Logging!!!',
-                    })
+                    alert("response.data", err);
+                    // Swal.fire({
+                    //     icon: 'error',
+                    //     title: 'Login Failed!',
+                    //     text: 'Oops... Error While Logging!!!',
+                    // })
                 }
             }
+            
             else {
-                setIsLoading(false);
-                //alert("Invalid Password!!!")
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Login Failed!',
-                    text: 'Oops... Invalid Password!!!',
-                })
+                // setIsLoading(false);
+                // alert("Invalid Password!!!")
+                // // Swal.fire({
+                // //     icon: 'error',
+                // //     title: 'Login Failed!',
+                // //     text: 'Oops... Invalid Password!!!',
+                // // })
             }
         }
         else {
-            setIsLoading(false);
-            //alert("Invalid Email Address!!!")
-            Swal.fire({
-                icon: 'error',
-                title: 'Login Failed!',
-                text: 'Oops... Invalid Email Address!!!',
-            })
+            // setIsLoading(false);
+            // //alert("Invalid Email Address!!!")
+            // Swal.fire({
+            //     icon: 'error',
+            //     title: 'Login Failed!',
+            //     text: 'Oops... Invalid Email Address!!!',
+            // })
         }
     };
 
@@ -99,7 +101,7 @@ export default function Login() {
         <div style={{ marginTop: "120px" }}>
 
             {isLoading ? <LoadingSpinner /> : renderUser}
-            <div className='container' style={{ marginTop: '30px', backgroundColor: "#d9d9d9", padding: '10px 10px 10px 10px', width:'40%' }}>
+            <div className='container' style={{ marginTop: '30px', backgroundColor: "#d9d9d9", padding: '10px 10px 10px 10px', width:'40%', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px' }}>
                 <div>
                     <h3 class="text-dark mb-4">Login</h3>
                 </div>
