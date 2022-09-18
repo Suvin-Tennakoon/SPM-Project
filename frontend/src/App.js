@@ -10,7 +10,12 @@ import UpdateProf from './components/CustomerHandling/UpdateProf';
 import PrevOrders from './components/CustomerHandling/PrevOrders';
 import Reviews from './components/OrderHandling/Reviews/Reviews';
 import GiveReview from './components/OrderHandling/Reviews/GiveReview';
-
+import PaymentDet from './components/DeliveryHandling/PaymentDet';
+import PaymentInv from './components/DeliveryHandling/PaymentInv';
+import CardPay from './components/DeliveryHandling/CardPay';
+import AllPayments from './components/DeliveryHandling/AllPayments';
+import AddCouponCode from './components/DeliveryHandling/AddCouponCode';
+import AllCoupons from './components/DeliveryHandling/AllCoupons';
 export default function App() {
   return (
     <div>
@@ -25,6 +30,12 @@ export default function App() {
             <Route path='/prevorders' element={<PrevOrders />}></Route>
             <Route path='/orderreview' element={<Reviews />}></Route>
             <Route path='/givereview' element={<GiveReview />}></Route>
+            <Route path='/paymentdet' element={<PaymentDet />}></Route>
+            <Route path='/paymentinv' element={<PaymentInv />}></Route>
+            <Route path='/cardpay' element={<CardPay />}></Route>
+            <Route path='/allpayments' element={<AllPayments />}></Route>
+            <Route path='/addcouponcode' element={<AddCouponCode />}></Route>
+            <Route path='/allcoupons' element={<AllCoupons />}></Route>
           </Routes>
     </div>
   );
