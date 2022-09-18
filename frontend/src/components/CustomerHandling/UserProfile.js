@@ -20,8 +20,8 @@ export default function UserProfile() {
     }, [])
 
     return (
-        <div style={{ marginTop: "120px" }}>
-            <div className='container text-dark' style={{ backgroundColor: '#d9d9d9', padding: '20px', width: '50%' }}>
+        <div style={{ marginTop: "120px", marginBottom: "120px"  }}>
+            <div className='container text-dark' style={{ backgroundColor: '#d9d9d9', padding: '20px', width: '50%', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px' }}>
                 {userDetails.map((val, index) => (
                     <article class="card" style={{ flex: '0 1 24%', marginBottom: '20px', backgroundColor: '#d9d9d9' }}>
                         <div className='card-header'>

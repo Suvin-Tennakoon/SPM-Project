@@ -15,7 +15,12 @@ import Compo from "./components/OrderHandling/Compo/Components";
 import OrderList from "./components/OrderHandling/SellersOrders/OrderList";
 import CakeOrderShp from "./components/OrderHandling/CakeOrderShop/CakeOrderShp";
 import OrderProgress from "./components/OrderHandling/OrderProgress/OrderProgress";
-
+import PaymentDet from './components/DeliveryHandling/PaymentDet';
+import PaymentInv from './components/DeliveryHandling/PaymentInv';
+import CardPay from './components/DeliveryHandling/CardPay';
+import AllPayments from './components/DeliveryHandling/AllPayments';
+import AddCouponCode from './components/DeliveryHandling/AddCouponCode';
+import AllCoupons from './components/DeliveryHandling/AllCoupons';
 export default function App() {
   return (
     <div>
@@ -30,6 +35,12 @@ export default function App() {
         <Route path="/prevorders" element={<PrevOrders />}></Route>
         <Route path="/orderreview" element={<Reviews />}></Route>
         <Route path="/givereview" element={<GiveReview />}></Route>
+            <Route path='/paymentdet' element={<PaymentDet />}></Route>
+            <Route path='/paymentinv' element={<PaymentInv />}></Route>
+            <Route path='/cardpay' element={<CardPay />}></Route>
+            <Route path='/allpayments' element={<AllPayments />}></Route>
+            <Route path='/addcouponcode' element={<AddCouponCode />}></Route>
+            <Route path='/allcoupons' element={<AllCoupons />}></Route>
         <Route path="/placeorder" element={<PlaceOrder />}></Route>
         <Route path="/sellerAllOrders" element={<OrderList />}></Route>
         <Route path="/components" element={<Compo />}></Route>
