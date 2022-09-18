@@ -211,7 +211,7 @@ const RegisterUser = () => {
         <div style={{ marginTop: "120px" }}>
 
             {isLoading ? <LoadingSpinner /> : renderUser}
-            <div className='container' style={{ marginTop: '30px', backgroundColor: "#d9d9d9", padding: '10px' }}>
+            <div className='container' style={{ marginTop: '30px', backgroundColor: "#d9d9d9", padding: '10px', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px' }}>
                 <div>
                     <h3 class="text-dark mb-4">SignUp</h3>
                 </div>
