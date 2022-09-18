@@ -13,6 +13,8 @@ import GiveReview from "./components/OrderHandling/Reviews/GiveReview";
 import PlaceOrder from "./components/OrderHandling/PlaceOrder/PlaceOrder";
 import Compo from "./components/OrderHandling/Compo/Components";
 import OrderList from "./components/OrderHandling/SellersOrders/OrderList";
+import CakeOrderShp from "./components/OrderHandling/CakeOrderShop/CakeOrderShp";
+import OrderProgress from "./components/OrderHandling/OrderProgress/OrderProgress";
 
 export default function App() {
   return (
@@ -29,8 +31,11 @@ export default function App() {
         <Route path="/orderreview" element={<Reviews />}></Route>
         <Route path="/givereview" element={<GiveReview />}></Route>
         <Route path="/placeorder" element={<PlaceOrder />}></Route>
-        <Route path="sellerAllOrders" element={<OrderList />}></Route>
+        <Route path="/sellerAllOrders" element={<OrderList />}></Route>
         <Route path="/components" element={<Compo />}></Route>
+
+        <Route path="/orderRequest/:id" element={<CakeOrderShp />}></Route>
+        <Route path="/orderProgress/:id" element={<OrderProgress />}></Route>
       </Routes>
     </div>
   );

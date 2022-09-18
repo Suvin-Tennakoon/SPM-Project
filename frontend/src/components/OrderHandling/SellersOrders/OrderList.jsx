@@ -4,22 +4,35 @@ import Footer from "../Footer/Footer";
 import NavBar from "../Navbar/Navbar";
 import "./orderlist.css";
 import PlaylistAddOutlinedIcon from "@mui/icons-material/PlaylistAddOutlined";
+import CircularProgress from "@mui/material/CircularProgress";
+import Backdrop from "@mui/material/Backdrop";
 
 export default function OrderList(props) {
-  const [seller, setSeller] = useState("suvin");
+  const [seller, setSeller] = useState("john");
   const [orders, setOrders] = useState([]);
+  const [openBkdrop, setOpenBkdrop] = useState(true);
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/orders/getAllOrders")
+      .get(
+        "https://cake-hut-app-backend.azurewebsites.net/api/orders/getCakeforShop/" +
+          seller
+      )
       .then((res) => {
         setOrders(res.data);
       })
+      .then(() => setOpenBkdrop(false))
       .catch((err) => console.log(err));
   }, []);
 
   return (
     <>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={openBkdrop}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <NavBar />
       <div className="container" style={{ marginTop: "150px" }}>
         <h4 style={{ marginBottom: "70px" }}>

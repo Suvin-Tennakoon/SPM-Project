@@ -31,6 +31,7 @@ import axios from "axios";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import "./placeorder.css";
+import PhoneSignUp from "./PhoneSignUp";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -160,6 +161,10 @@ export default function VerticalLinearStepper() {
   const [openSnak, setOpenSnak] = useState(false);
   const [openBkdrop, setOpenBkdrop] = useState(false);
 
+  function getPhoneNumber(val) {
+    setPhone(val);
+  }
+
   const handleCloseSnak = (event, reason) => {
     setOpenSnak(false);
   };
@@ -260,22 +265,7 @@ export default function VerticalLinearStepper() {
       pnumber === "" &&
       deliverType === "Enter an Address to be Delivered"
     ) {
-      setErrormsg("Please Enter Contact Number");
-      setOpenSnak(true);
-    } else if (
-      !/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(
-        pnumber
-      ) &&
-      deliverType === "Enter an Address to be Delivered"
-    ) {
-      // (123) 456-7890
-      // (123)456-7890
-      // 123-456-7890
-      // 123.456.7890
-      // 1234567890
-      // +31636363634
-      // 075 - 63546725;
-      setErrormsg("Please Enter Valid Number");
+      setErrormsg("Please Verify Phone Number");
       setOpenSnak(true);
     } else if (paymentType === "") {
       setErrormsg("Please Select a Payment Type");
@@ -305,7 +295,10 @@ export default function VerticalLinearStepper() {
       };
 
       axios
-        .post("http://localhost:3001/api/orders/addCakeOrder", cakeOrder)
+        .post(
+          "https://cake-hut-app-backend.azurewebsites.net/api/orders/addCakeOrder",
+          cakeOrder
+        )
         .then((res) => {
           setOrderid(res.data);
           setOpenBkdrop(false);
@@ -337,7 +330,7 @@ export default function VerticalLinearStepper() {
         <CircularProgress color="inherit" />
       </Backdrop>
       <Container sx={{ mt: "150px", mb: "150px" }}>
-        <Box sx={{ width: "80%" }}>
+        <Box sx={{ width: { md: "80%", sm: "100%" } }}>
           <Stepper
             activeStep={activeStep}
             orientation="vertical"
@@ -1194,30 +1187,7 @@ export default function VerticalLinearStepper() {
                         </label>
                       </div>
                     </div>
-                    <div class="col">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          style={{
-                            accentColor: "#ff214f",
-                            width: "20px",
-                            height: "20px",
-                          }}
-                          type="radio"
-                          value="Deliver to My Address"
-                          onChange={(e) => setDeliverType(e.target.value)}
-                          name="deltype"
-                          id="deltype2"
-                        />
-                        <label
-                          style={{ marginLeft: "10px" }}
-                          class="form-check-label"
-                          for="deltype2"
-                        >
-                          Deliver to My Address
-                        </label>
-                      </div>
-                    </div>
+
                     <div class="col">
                       <div class="form-check">
                         <input
@@ -1285,16 +1255,8 @@ export default function VerticalLinearStepper() {
                           </div>
                         </div>
                       </div>
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="exampleFormControlInput8"
-                          placeholder="Contact Number *"
-                          value={pnumber}
-                          onChange={(e) => setPhone(e.target.value)}
-                        />
-                      </div>
+
+                      <PhoneSignUp sendData={getPhoneNumber} />
                     </>
                   ) : (
                     ""
@@ -1331,30 +1293,35 @@ export default function VerticalLinearStepper() {
                         </label>
                       </div>
                     </div>
-                    <div class="col">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          style={{
-                            accentColor: "#ff214f",
-                            width: "20px",
-                            height: "20px",
-                          }}
-                          type="radio"
-                          value="Pay at Store"
-                          onChange={(e) => setPaymentType(e.target.value)}
-                          name="paytype"
-                          id="paytype2"
-                        />
-                        <label
-                          style={{ marginLeft: "10px" }}
-                          class="form-check-label"
-                          for="paytype2"
-                        >
-                          Pay at Store
-                        </label>
+                    {deliverType === "Enter an Address to be Delivered" ? (
+                      <></>
+                    ) : (
+                      <div class="col">
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            style={{
+                              accentColor: "#ff214f",
+                              width: "20px",
+                              height: "20px",
+                            }}
+                            type="radio"
+                            value="Pay at Store"
+                            onChange={(e) => setPaymentType(e.target.value)}
+                            name="paytype"
+                            id="paytype2"
+                          />
+                          <label
+                            style={{ marginLeft: "10px" }}
+                            class="form-check-label"
+                            for="paytype2"
+                          >
+                            Pay at Store
+                          </label>
+                        </div>
                       </div>
-                    </div>
+                    )}
+
                     <div class="col">
                       <div class="form-check">
                         <input

@@ -56,13 +56,13 @@ export default function NavBar() {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#book-table">
+            <a className="nav-link" href="#placeorder">
               Place Order
             </a>
           </li>
         </ul>
         <a className="navbar-brand m-auto" href="/">
-          <img src="assets/imgs/logo.png" className="brand-img" alt=""></img>
+          <img src="/assets/imgs/logo.png" className="brand-img" alt=""></img>
           <span className="brand-txt">Cake Hut</span>
         </a>
         <ul className="navbar-nav">

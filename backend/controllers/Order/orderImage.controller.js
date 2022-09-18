@@ -52,7 +52,43 @@ const getAllCakeOrders = (req, res) => {
     });
 };
 
+const getCakesforSeller = (req, res) => {
+  cakeOrder
+    .find({ seller: req.params.seller })
+    .then((cakeOrder) => {
+      res.json(cakeOrder);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+};
+
+const getCakesforCustomer = (req, res) => {
+  cakeOrder
+    .find({ customer: req.params.customer })
+    .then((cakeOrder) => {
+      res.json(cakeOrder);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+};
+
+const getOrderData = (req, res) => {
+  cakeOrder
+    .findById(req.params.id)
+    .then((cakeOrder) => {
+      res.json(cakeOrder);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+};
+
 module.exports = {
   addNewOrder,
   getAllCakeOrders,
+  getCakesforSeller,
+  getCakesforCustomer,
+  getOrderData,
 };
