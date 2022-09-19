@@ -6,6 +6,8 @@ import "./orderlist.css";
 import PlaylistAddOutlinedIcon from "@mui/icons-material/PlaylistAddOutlined";
 import CircularProgress from "@mui/material/CircularProgress";
 import Backdrop from "@mui/material/Backdrop";
+import { BACKEND_DOMAIN } from "../Domain";
+import QRread from "./QRread";
 
 export default function OrderList(props) {
   const [seller, setSeller] = useState("john");
@@ -14,10 +16,7 @@ export default function OrderList(props) {
 
   useEffect(() => {
     axios
-      .get(
-        "https://cake-hut-app-backend.azurewebsites.net/api/orders/getCakeforShop/" +
-          seller
-      )
+      .get(BACKEND_DOMAIN + "/api/orders/getCakeforShop/" + seller)
       .then((res) => {
         setOrders(res.data);
       })
@@ -35,15 +34,27 @@ export default function OrderList(props) {
       </Backdrop>
       <NavBar />
       <div className="container" style={{ marginTop: "150px" }}>
-        <h4 style={{ marginBottom: "70px" }}>
-          <u>{`Hi ${seller}, You have ${orders.length} order requests..`}</u>
-        </h4>
+        <div class="row">
+          <div class="col">
+            <h4 style={{ marginBottom: "70px" }}>
+              <u>{`Hi ${seller}, You have ${orders.length} order requests..`}</u>
+            </h4>
+          </div>
+          <div
+            class="col"
+            style={{
+              textAlign: "right",
+            }}
+          >
+            <QRread />
+          </div>
+        </div>
 
         {/* card map start */}
         {orders?.map((order) => {
           return (
             <>
-              <div class="card mb-3 suvincard" style={{ width: "540px;" }}>
+              <div class="card mb-3 suvincard">
                 <div class="row g-0">
                   <div class="col-md-4">
                     <img

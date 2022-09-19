@@ -5,7 +5,8 @@ const {
   getCakesforSeller,
   getCakesforCustomer,
   getOrderData,
-} = require("../controllers/Order/orderImage.controller");
+  getOrderProgress,
+} = require("../controllers/Order/order.controller");
 const orderRoutes = express.Router();
 
 //code
@@ -15,6 +16,7 @@ orderRoutes.get("/getAllOrders", getAllCakeOrders);
 orderRoutes.get("/getCakeforShop/:seller", getCakesforSeller);
 orderRoutes.get("/getCakeforCustomer/:customer", getCakesforCustomer);
 orderRoutes.get("/getOrderData/:id", getOrderData);
+orderRoutes.get("/getOrderProgress/:id", getOrderProgress);
 
 
 module.exports = orderRoutes;

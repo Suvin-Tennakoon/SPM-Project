@@ -1,4 +1,5 @@
 const cakeOrder = require("../../models/Order/cakeOrder.model");
+const orderProgress = require("../../models/Order/orderProgress.model");
 
 const addNewOrder = (req, res) => {
   const seller = req.body.seller;
@@ -35,6 +36,19 @@ const addNewOrder = (req, res) => {
     .save()
     .then((cakeOrder) => {
       res.json(cakeOrder._id);
+
+      const newOrderProgress = orderProgress({
+        orderId: cakeOrder._id,
+        cakeImage,
+        cakeName: cakeType,
+        decision: 0,
+        amount: "",
+        modPeriod: "",
+        advAmount: "",
+        rejectReason: "",
+      });
+
+      newOrderProgress.save();
     })
     .catch((err) => {
       res.json(err);
@@ -85,10 +99,22 @@ const getOrderData = (req, res) => {
     });
 };
 
+const getOrderProgress = (req, res) => {
+  orderProgress
+    .findOne({ orderId: req.params.id })
+    .then((orderProgress) => {
+      res.json(orderProgress);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+};
+
 module.exports = {
   addNewOrder,
   getAllCakeOrders,
   getCakesforSeller,
   getCakesforCustomer,
   getOrderData,
+  getOrderProgress,
 };

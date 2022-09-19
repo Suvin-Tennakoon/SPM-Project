@@ -32,6 +32,7 @@ import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import "./placeorder.css";
 import PhoneSignUp from "./PhoneSignUp";
+import { BACKEND_DOMAIN } from "../Domain";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -295,10 +296,7 @@ export default function VerticalLinearStepper() {
       };
 
       axios
-        .post(
-          "https://cake-hut-app-backend.azurewebsites.net/api/orders/addCakeOrder",
-          cakeOrder
-        )
+        .post(BACKEND_DOMAIN + "/api/orders/addCakeOrder", cakeOrder)
         .then((res) => {
           setOrderid(res.data);
           setOpenBkdrop(false);
@@ -1385,7 +1383,7 @@ export default function VerticalLinearStepper() {
                   order states for any update.
                   <br />
                   Meanwhile you can find your order from{" "}
-                  <a href={`/displayOrder/id=${orderid}`}>HERE</a>
+                  <a href={`/orderProgress/${orderid}`}>HERE</a>
                   <button
                     type="button"
                     className="close"
