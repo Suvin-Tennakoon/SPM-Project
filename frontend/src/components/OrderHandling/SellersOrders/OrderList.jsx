@@ -8,6 +8,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Backdrop from "@mui/material/Backdrop";
 import { BACKEND_DOMAIN } from "../Domain";
 import QRread from "./QRread";
+import PdfGen from "../PDFgen/PdfGen";
 
 export default function OrderList(props) {
   const [seller, setSeller] = useState("john");
@@ -40,12 +41,16 @@ export default function OrderList(props) {
               <u>{`Hi ${seller}, You have ${orders.length} order requests..`}</u>
             </h4>
           </div>
+
           <div
             class="col"
             style={{
               textAlign: "right",
             }}
           >
+            <div style={{ marginBottom: "10px" }}>
+              <PdfGen />
+            </div>
             <QRread />
           </div>
         </div>

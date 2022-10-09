@@ -23,6 +23,7 @@ const newCakeOrderSchema = new Schema({
   deliverData: deliverSchema,
   paymentType: String,
   cakeImage: String,
+  accepted: Number,
 });
 
 //convert schema into a model

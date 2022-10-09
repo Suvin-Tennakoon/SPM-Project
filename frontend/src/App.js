@@ -21,6 +21,9 @@ import CardPay from './components/DeliveryHandling/CardPay';
 import AllPayments from './components/DeliveryHandling/AllPayments';
 import AddCouponCode from './components/DeliveryHandling/AddCouponCode';
 import AllCoupons from './components/DeliveryHandling/AllCoupons';
+import UpdateOrder from "./components/OrderHandling/UpdateOrder/UpdateOrder";
+import Unauthorized from "./components/OrderHandling/Unauthorized/Unauthorized";
+import PdfGen from "./components/OrderHandling/PDFgen/PdfGen";
 export default function App() {
   return (
     <div>
@@ -35,18 +38,21 @@ export default function App() {
         <Route path="/prevorders" element={<PrevOrders />}></Route>
         <Route path="/orderreview" element={<Reviews />}></Route>
         <Route path="/givereview" element={<GiveReview />}></Route>
-            <Route path='/paymentdet' element={<PaymentDet />}></Route>
-            <Route path='/paymentinv' element={<PaymentInv />}></Route>
-            <Route path='/cardpay' element={<CardPay />}></Route>
-            <Route path='/allpayments' element={<AllPayments />}></Route>
-            <Route path='/addcouponcode' element={<AddCouponCode />}></Route>
-            <Route path='/allcoupons' element={<AllCoupons />}></Route>
+        <Route path="/paymentdet" element={<PaymentDet />}></Route>
+        <Route path="/paymentinv" element={<PaymentInv />}></Route>
+        <Route path="/cardpay" element={<CardPay />}></Route>
+        <Route path="/allpayments" element={<AllPayments />}></Route>
+        <Route path="/addcouponcode" element={<AddCouponCode />}></Route>
+        <Route path="/allcoupons" element={<AllCoupons />}></Route>
+
         <Route path="/placeorder" element={<PlaceOrder />}></Route>
         <Route path="/sellerAllOrders" element={<OrderList />}></Route>
         <Route path="/components" element={<Compo />}></Route>
-
         <Route path="/orderRequest/:id" element={<CakeOrderShp />}></Route>
         <Route path="/orderProgress/:id" element={<OrderProgress />}></Route>
+        <Route path="/orderUpdate/:id" element={<UpdateOrder />}></Route>
+        <Route path="/unauthorized" element={<Unauthorized />}></Route>
+        <Route path="orderReport" element={<PdfGen />}></Route>
       </Routes>
     </div>
   );

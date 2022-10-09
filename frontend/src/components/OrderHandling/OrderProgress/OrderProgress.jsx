@@ -199,34 +199,36 @@ export default function OrderProgress() {
       .then((res) => {
         setOrderProgress(res.data);
 
-        switch (res.data.decision) {
-          case 0:
-            setActiveStep(0);
-            setDescription(
-              "Your order is in review. Seller will update the state of the order. Check the page for latest progress. Meanwhile, browse new cake designs in out store"
-            );
-            break;
-          case -1:
-            setActiveStep(2);
-            setCurrentTitle("Processing of your order has been failed");
-            setDescription(
-              "Seller has rejected your order request. You can place a new order by doing the necessary modifications"
-            );
-            break;
-          case 1:
-            setActiveStep(1);
-            setDescription(styleDescription(res.data.modPeriod));
-            setCurrentTitle(
-              "Your order has been accepted and in the processing"
-            );
-            break;
-          case 5:
-            setActiveStep(2);
-            setDescription(
-              "Pleasure doing business with you. Visit our store again.."
-            );
-            setCurrentTitle("Your order has been completed");
-            break;
+        if (res.data) {
+          switch (res.data.decision) {
+            case 0:
+              setActiveStep(0);
+              setDescription(
+                "Your order is in review. Seller will update the state of the order. Check the page for latest progress. Meanwhile, browse new cake designs in out store"
+              );
+              break;
+            case -1:
+              setActiveStep(2);
+              setCurrentTitle("Processing of your order has been failed");
+              setDescription(
+                "Seller has rejected your order request. You can place a new order by doing the necessary modifications"
+              );
+              break;
+            case 1:
+              setActiveStep(1);
+              setDescription(styleDescription(res.data.modPeriod));
+              setCurrentTitle(
+                "Your order has been accepted and in the processing"
+              );
+              break;
+            case 5:
+              setActiveStep(2);
+              setDescription(
+                "Pleasure doing business with you. Visit our store again.."
+              );
+              setCurrentTitle("Your order has been completed");
+              break;
+          }
         }
       });
   }, []);
@@ -261,7 +263,7 @@ export default function OrderProgress() {
           <div class="col-md-8">
             <div class="card-body" style={{ textAlign: "center" }}>
               <h5 class="card-title" style={{ marginBottom: "50px" }}>
-                {orderProgress.cakeName}
+                {orderProgress?.cakeName}
               </h5>
               <ThemeProvider theme={darkTheme}>
                 <Stepper
@@ -278,11 +280,11 @@ export default function OrderProgress() {
                   <Step key={1}>
                     <StepLabel StepIconComponent={ColorlibStepIcon}>
                       <b>
-                        {(orderProgress.decision === 1 &&
+                        {(orderProgress?.decision === 1 &&
                           "Seller has accepted your order") ||
-                          (orderProgress.decision === -1 &&
+                          (orderProgress?.decision === -1 &&
                             "Seller has rejected your order") ||
-                          (orderProgress.decision === 5 &&
+                          (orderProgress?.decision === 5 &&
                             "Seller has accepted your order")}
                       </b>
                     </StepLabel>
@@ -291,11 +293,11 @@ export default function OrderProgress() {
                   <Step key={2}>
                     <StepLabel StepIconComponent={ColorlibStepIcon}>
                       <b>
-                        {(orderProgress.decision === 1 &&
+                        {(orderProgress?.decision === 1 &&
                           "Order successfully completed") ||
-                          (orderProgress.decision === -1 &&
+                          (orderProgress?.decision === -1 &&
                             "Order processing failed") ||
-                          (orderProgress.decision === 5 &&
+                          (orderProgress?.decision === 5 &&
                             "Order successfully completed")}
                       </b>
                     </StepLabel>
@@ -320,22 +322,22 @@ export default function OrderProgress() {
           <h5 class="card-title">{currentTitle}</h5>
           <p class="card-text">{description}</p>
 
-          {(orderProgress.decision === -1 && (
+          {(orderProgress?.decision === -1 && (
             <a href="/placeOrder" class="btn btn-primary">
               Place New Order
             </a>
           )) ||
-            (orderProgress.decision === 0 && (
+            (orderProgress?.decision === 0 && (
               <a href="/" class="btn btn-primary">
                 Browse More
               </a>
             )) ||
-            (orderProgress.decision === 5 && (
+            (orderProgress?.decision === 5 && (
               <a href="/" class="btn btn-primary">
                 Browse More
               </a>
             )) ||
-            (orderProgress.decision === 1 && (
+            (orderProgress?.decision === 1 && (
               <>
                 <br />
                 <p
@@ -346,12 +348,12 @@ export default function OrderProgress() {
                     borderRadius: "3px",
                   }}
                 >
-                  Cake Price : Rs. {orderProgress.amount} /=
+                  Cake Price : Rs. {orderProgress?.amount} /=
                   <br />
-                  {orderProgress.advAmount === "" ? (
+                  {orderProgress?.advAmount === "" ? (
                     ""
                   ) : (
-                    <>Advance Payment : Rs. {orderProgress.advAmount}/=</>
+                    <>Advance Payment : Rs. {orderProgress?.advAmount}/=</>
                   )}
                 </p>
                 <br />
@@ -364,9 +366,10 @@ export default function OrderProgress() {
                     <button
                       className="btn btn-primary circle"
                       title="Update or Delete Order"
-                      disabled={isPast(parseISO(orderProgress.modPeriod))}
+                      onClick={() => (window.location = "/orderUpdate/" + id)}
+                      disabled={isPast(parseISO(orderProgress?.modPeriod))}
                     >
-                      {isPast(parseISO(orderProgress.modPeriod)) ? (
+                      {isPast(parseISO(orderProgress?.modPeriod)) ? (
                         <EditOffIcon />
                       ) : (
                         <BorderColorIcon />
@@ -374,15 +377,15 @@ export default function OrderProgress() {
                     </button>
                   </div>
                   <div class="col">
-                    <QR disable={orderProgress.modPeriod} order={id} />
+                    <QR disable={orderProgress?.modPeriod} order={id} />
                   </div>
                   <div class="col">
                     <button
                       className="btn btn-primary circle"
                       title="Payment"
-                      disabled={orderProgress.advAmount === "" ? true : false}
+                      disabled={orderProgress?.advAmount === "" ? true : false}
                     >
-                      {orderProgress.advAmount === "" ? (
+                      {orderProgress?.advAmount === "" ? (
                         <CreditCardOffIcon />
                       ) : (
                         <CreditCardIcon />
@@ -394,7 +397,7 @@ export default function OrderProgress() {
             ))}
         </div>
         <div class="card-footer text-muted">
-          Order REF: #{orderProgress.orderId}
+          Order REF: #{orderProgress?.orderId}
         </div>
       </div>
       <Footer />

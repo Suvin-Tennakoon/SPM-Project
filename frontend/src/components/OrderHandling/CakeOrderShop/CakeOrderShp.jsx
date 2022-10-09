@@ -108,12 +108,22 @@ export default function CakeOrderShp() {
         setOpenSnak(true);
       } else {
         const data = {
-          decision,
           amount,
           modPeriod,
           advAmount,
         };
-        axios.post();
+        axios
+          .put(
+            BACKEND_DOMAIN + "/api/orders/setAcceptedOrder/" + order._id,
+            data
+          )
+          .then((res) => {
+            console.log(res.data);
+            window.location = "/sellerAllOrders"
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
     } else if (decision === -1) {
       if (rejectReason === "") {
@@ -121,9 +131,15 @@ export default function CakeOrderShp() {
         setOpenSnak(true);
       } else {
         const data = {
-          decision,
           rejectReason,
         };
+
+        axios.put(BACKEND_DOMAIN+"/api/orders/setRejectedOrder/"+order._id, data)
+        .then((res) => {
+          console.log(res.data);
+          window.location = "/sellerAllOrders"
+        })
+        .catch((err)=> console.log(err))
       }
     }
   };

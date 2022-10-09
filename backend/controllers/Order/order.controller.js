@@ -30,13 +30,12 @@ const addNewOrder = (req, res) => {
     deliverData,
     paymentType,
     cakeImage,
+    accepted: 0,
   });
 
   newCakeOrder
     .save()
     .then((cakeOrder) => {
-      res.json(cakeOrder._id);
-
       const newOrderProgress = orderProgress({
         orderId: cakeOrder._id,
         cakeImage,
@@ -48,7 +47,9 @@ const addNewOrder = (req, res) => {
         rejectReason: "",
       });
 
-      newOrderProgress.save();
+      newOrderProgress.save().then(() => {
+        res.json(cakeOrder._id);
+      });
     })
     .catch((err) => {
       res.json(err);
@@ -67,6 +68,17 @@ const getAllCakeOrders = (req, res) => {
 };
 
 const getCakesforSeller = (req, res) => {
+  cakeOrder
+    .find({ seller: req.params.seller, accepted: 0 })
+    .then((cakeOrder) => {
+      res.json(cakeOrder);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+};
+
+const getAllOrdersForSeller = (req, res) => {
   cakeOrder
     .find({ seller: req.params.seller })
     .then((cakeOrder) => {
@@ -110,6 +122,103 @@ const getOrderProgress = (req, res) => {
     });
 };
 
+const updateOrder = (req, res) => {
+  cakeOrder
+    .findByIdAndUpdate(req.params.id, {
+      $set: {
+        cakeType: req.body.cakeType,
+        size: req.body.size,
+        flavour: req.body.flavour,
+        sugar: req.body.sugar,
+        quantity: req.body.quantity,
+        cakeText: req.body.cakeText,
+        accessories: req.body.accessories,
+        ingredients: req.body.ingredients,
+        cakeImage: req.body.cakeImage,
+        accepted: 0,
+      },
+    })
+    .then(() => {
+      orderProgress
+        .findOneAndUpdate(
+          { orderId: req.params.id },
+          {
+            $set: {
+              cakeImage: req.body.cakeImage,
+              cakeName: req.body.cakeType,
+              decision: 0,
+              amount: "",
+              modPeriod: "",
+              advAmount: "",
+              rejectReason: "",
+            },
+          }
+        )
+        .then(() => {
+          res.json("Updated Successfully");
+        });
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+};
+
+const setAcceptedOrder = (req, res) => {
+  orderProgress
+    .findOneAndUpdate(
+      { orderId: req.params.id },
+      {
+        $set: {
+          decision: 1,
+          amount: req.body.amount,
+          modPeriod: req.body.modPeriod,
+          advAmount: req.body.advAmount,
+        },
+      }
+    )
+    .then(() => {
+      cakeOrder
+        .findByIdAndUpdate(req.params.id, {
+          $set: {
+            accepted: 1,
+          },
+        })
+        .then(() => {
+          res.json("Success");
+        });
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+};
+
+const setRejectOrder = (req, res) => {
+  orderProgress
+    .findOneAndUpdate(
+      { orderId: req.params.id },
+      {
+        $set: {
+          decision: -1,
+          rejectReason: req.body.rejectReason,
+        },
+      }
+    )
+    .then(() => {
+      cakeOrder
+        .findByIdAndUpdate(req.params.id, {
+          $set: {
+            accepted: -1,
+          },
+        })
+        .then(() => {
+          res.json("Success");
+        });
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+};
+
 module.exports = {
   addNewOrder,
   getAllCakeOrders,
@@ -117,4 +226,8 @@ module.exports = {
   getCakesforCustomer,
   getOrderData,
   getOrderProgress,
+  updateOrder,
+  setAcceptedOrder,
+  setRejectOrder,
+  getAllOrdersForSeller,
 };
