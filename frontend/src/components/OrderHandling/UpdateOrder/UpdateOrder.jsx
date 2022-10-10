@@ -188,7 +188,15 @@ export default function UpdateOrder() {
   };
 
   const deleteOrder = () => {
-    setOpenDel(true);
+    axios
+      .delete(BACKEND_DOMAIN + "/api/orders/deletecustomerorder/" + id)
+      .then((res) => {
+        alert(res.data);
+        window.location = "/";
+      })
+      .catch((err) => {
+        alert(err);
+      });
   };
 
   const cakeSubmit = () => {
@@ -993,7 +1001,7 @@ export default function UpdateOrder() {
                     <div className="col" style={{ textAlign: "right" }}>
                       <button
                         className="btn btn-outline-secondary"
-                        onClick={deleteOrder}
+                        onClick={() => setOpenDel(true)}
                         style={{ margin: "30px 30px 30px 0px" }}
                       >
                         <DeleteOutlineIcon />
@@ -1021,7 +1029,11 @@ export default function UpdateOrder() {
                 role="tablist"
               >
                 <li className="nav-item">
-                  <button type="button" className="btn btn-danger">
+                  <button
+                    type="button"
+                    className="btn btn-danger"
+                    onClick={deleteOrder}
+                  >
                     Confirm Delete
                   </button>
                 </li>

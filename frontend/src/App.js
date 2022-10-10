@@ -52,7 +52,6 @@ export default function App() {
         <Route path="/orderProgress/:id" element={<OrderProgress />}></Route>
         <Route path="/orderUpdate/:id" element={<UpdateOrder />}></Route>
         <Route path="/unauthorized" element={<Unauthorized />}></Route>
-        <Route path="orderReport" element={<PdfGen />}></Route>
       </Routes>
     </div>
   );

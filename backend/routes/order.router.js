@@ -10,6 +10,7 @@ const {
   setAcceptedOrder,
   setRejectOrder,
   getAllOrdersForSeller,
+  deleteOrder,
 } = require("../controllers/Order/order.controller");
 const orderRoutes = express.Router();
 
@@ -25,5 +26,6 @@ orderRoutes.get("/getOrderProgress/:id", getOrderProgress);
 orderRoutes.put("/updateOrder/:id", updateOrder);
 orderRoutes.put("/setAcceptedOrder/:id", setAcceptedOrder);
 orderRoutes.put("/setRejectedOrder/:id", setRejectOrder);
+orderRoutes.delete("/deletecustomerorder/:id", deleteOrder);
 
 module.exports = orderRoutes;

@@ -219,6 +219,19 @@ const setRejectOrder = (req, res) => {
     });
 };
 
+const deleteOrder = (req, res) => {
+  cakeOrder
+    .findByIdAndDelete(req.params.id)
+    .then(() => {
+      orderProgress.findOneAndDelete({ orderId: req.params.id }).then(() => {
+        res.json("Deleted");
+      });
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+};
+
 module.exports = {
   addNewOrder,
   getAllCakeOrders,
@@ -230,4 +243,5 @@ module.exports = {
   setAcceptedOrder,
   setRejectOrder,
   getAllOrdersForSeller,
+  deleteOrder,
 };
