@@ -23,7 +23,7 @@ export default function Login() {
 
     const onSubmit = async (e) => {
 
-        //setIsLoading(true);
+        setIsLoading(true);
         e.preventDefault();
 
         console.log("Inserted Data: ", formData)
@@ -59,35 +59,35 @@ export default function Login() {
                     }
                 }
                 catch (err) {
-                    //setIsLoading(false);
+                    setIsLoading(false);
                     console.log(err);
-                    alert("response.data", err);
-                    // Swal.fire({
-                    //     icon: 'error',
-                    //     title: 'Login Failed!',
-                    //     text: 'Oops... Error While Logging!!!',
-                    // })
+                    //alert("response.data", err);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Login Failed!',
+                        text: 'Oops... Error While Logging!!!',
+                    })
                 }
             }
             
             else {
-                // setIsLoading(false);
+                setIsLoading(false);
                 // alert("Invalid Password!!!")
-                // // Swal.fire({
-                // //     icon: 'error',
-                // //     title: 'Login Failed!',
-                // //     text: 'Oops... Invalid Password!!!',
-                // // })
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Login Failed!',
+                    text: 'Oops... Invalid Password!!!',
+                })
             }
         }
         else {
-            // setIsLoading(false);
+            setIsLoading(false);
             // //alert("Invalid Email Address!!!")
-            // Swal.fire({
-            //     icon: 'error',
-            //     title: 'Login Failed!',
-            //     text: 'Oops... Invalid Email Address!!!',
-            // })
+            Swal.fire({
+                icon: 'error',
+                title: 'Login Failed!',
+                text: 'Oops... Invalid Email Address!!!',
+            })
         }
     };
 
