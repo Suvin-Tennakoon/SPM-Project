@@ -38,7 +38,7 @@ function Updatedesign(props) {
     axios
       .put("http://localhost:3001/api/shops/update/" + id, updatedesign)
       .then(() => {
-        alert("Design is updated successfully");
+        // alert("Design is updated successfully");
         window.location = "/displaydesign";
       })
       .catch((err) => {
