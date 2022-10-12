@@ -1,31 +1,5 @@
 const CouponCode = require('../../models/Payment/CouponCode');
-// const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-
-// var jwtSecret = 'mysecrettoken';
-
-// const getUsers = async (req, res) => {
-
-//     const PAGE_SIZE = 2;
-//     const page = parseInt(req.query.page || "0");
-//     const total = await User.countDocuments({});
-
-//     try {
-
-//         const users = await User.find()
-//             .limit(PAGE_SIZE)
-//             .skip(PAGE_SIZE * page);
-//         res.json({
-//             totalPages: Math.ceil(total / PAGE_SIZE),
-//             users,
-//         });
-//         res.status(200);
-//     }
-//     catch (err) {
-
-//         res.status(400).json({ message: err.message });
-//     }
-// }
 
 const addcouponcode = (req, res, next) => {
     const couponId = req.body.couponId;
@@ -33,7 +7,6 @@ const addcouponcode = (req, res, next) => {
     const discount = req.body.discount;
     const expireDate = req.body.expireDate;
     const status = req.body.status;
-    // const PType = req.body.PType;
   
     const newCouponCode = new CouponCode({
         couponId,

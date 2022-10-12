@@ -15,6 +15,7 @@ import CardPay from './components/DeliveryHandling/CardPay';
 import AllPayments from './components/DeliveryHandling/AllPayments';
 import AddCouponCode from './components/DeliveryHandling/AddCouponCode';
 import AllCoupons from './components/DeliveryHandling/AllCoupons';
+import PayherePage from './components/DeliveryHandling/PayherePage';
 import AllCustomers from './components/AdminHandling/AllCustomers';
 import AllReviews from './components/AdminHandling/AllReviews';
 import AdminHome from './components/AdminHandling/Home'; 
@@ -47,6 +48,7 @@ export default function App() {
             <Route path='/allpayments' element={<AllPayments />}></Route>
             <Route path='/addcouponcode' element={<AddCouponCode />}></Route>
             <Route path='/allcoupons' element={<AllCoupons />}></Route>
+            <Route path='/payherepage' element={<PayherePage />}></Route>
             <Route path='/allcus' element={<AllCustomers />}></Route>
             <Route path='/allrev' element={<AllReviews />}></Route>
             <Route path='/adminhome' element={<AdminHome />}></Route>
