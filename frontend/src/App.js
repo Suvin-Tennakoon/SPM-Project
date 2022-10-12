@@ -1,6 +1,12 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/OrderHandling/Home/Home";
+import AddNewDesign from "./components/ShopHandling/AddNewDesign/AddNewDesign";
+import DisplayDesigns from "./components/ShopHandling/DisplayDesign/DisplayDisgn";
+import Updatedesign from "./components/ShopHandling/UpdateDesign/UpdateDesign";
+import Acceptedorders from "./components/ShopHandling/PlacedOrders/Placedorders";
+import UpdateOwner from "./components/ShopHandling/Updateowner/UpdateOwner";
+import Footer from "./components/OrderHandling/Footer/Footer";
 import NavBar from "./components/OrderHandling/Navbar/Navbar";
 import Login from "./components/CustomerHandling/Login";
 import Signup from "./components/CustomerHandling/Signup";
@@ -23,6 +29,10 @@ import AllCoupons from './components/DeliveryHandling/AllCoupons';
 import UpdateOrder from "./components/OrderHandling/UpdateOrder/UpdateOrder";
 import Unauthorized from "./components/OrderHandling/Unauthorized/Unauthorized";
 import PdfGen from "./components/OrderHandling/PDFgen/PdfGen";
+
+
+
+import vieworders from "./components/ShopHandling/Vieworders/Vieworders";
 import PayherePage from './components/DeliveryHandling/PayherePage';
 import AllCustomers from './components/AdminHandling/AllCustomers';
 import AllReviews from './components/AdminHandling/AllReviews';
@@ -50,6 +60,7 @@ export default function App() {
        
 
         <Route path="/givereview" element={<GiveReview />}></Route>
+      
         <Route path="/paymentdet" element={<PaymentDet />}></Route>
         <Route path="/paymentinv" element={<PaymentInv />}></Route>
         <Route path="/cardpay" element={<CardPay />}></Route>
@@ -70,7 +81,17 @@ export default function App() {
         <Route path="/orderUpdate/:id" element={<UpdateOrder />}></Route>
         <Route path="/unauthorized" element={<Unauthorized />}></Route>
            
-      </Routes>
+
+
+        <Route path="/vieworders" element={<vieworders/>}></Route>
+        <Route path="/addesign" element={<AddNewDesign />}></Route>
+        <Route path="/displaydesign" exact element={<DisplayDesigns />}></Route>
+        <Route path="/update/:id" element={<Updatedesign />}></Route>
+        
+        <Route path="/Acorders" element={<Acceptedorders />}></Route>
+        <Route path="/upowner" element={<UpdateOwner />}></Route>
+
+          </Routes>
     </div>
   );
 }
