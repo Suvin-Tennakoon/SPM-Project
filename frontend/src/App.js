@@ -23,6 +23,7 @@ import AllCoupons from './components/DeliveryHandling/AllCoupons';
 import UpdateOrder from "./components/OrderHandling/UpdateOrder/UpdateOrder";
 import Unauthorized from "./components/OrderHandling/Unauthorized/Unauthorized";
 import PdfGen from "./components/OrderHandling/PDFgen/PdfGen";
+import PayherePage from './components/DeliveryHandling/PayherePage';
 import AllCustomers from './components/AdminHandling/AllCustomers';
 import AllReviews from './components/AdminHandling/AllReviews';
 import AdminHome from './components/AdminHandling/Home'; 
@@ -55,6 +56,7 @@ export default function App() {
         <Route path="/allpayments" element={<AllPayments />}></Route>
         <Route path="/addcouponcode" element={<AddCouponCode />}></Route>
         <Route path="/allcoupons" element={<AllCoupons />}></Route>
+        <Route path='/payherepage' element={<PayherePage />}></Route>
 
         <Route path='/allcus' element={<AllCustomers />}></Route>
         <Route path='/allrev' element={<AllReviews />}></Route>
@@ -67,7 +69,7 @@ export default function App() {
         <Route path="/orderProgress/:id" element={<OrderProgress />}></Route>
         <Route path="/orderUpdate/:id" element={<UpdateOrder />}></Route>
         <Route path="/unauthorized" element={<Unauthorized />}></Route>
-
+           
       </Routes>
     </div>
   );
