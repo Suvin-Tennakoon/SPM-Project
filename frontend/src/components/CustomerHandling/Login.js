@@ -23,7 +23,7 @@ export default function Login() {
 
     const onSubmit = async (e) => {
 
-        //setIsLoading(true);
+        setIsLoading(true);
         e.preventDefault();
 
         console.log("Inserted Data: ", formData)
@@ -34,7 +34,7 @@ export default function Login() {
         if (formData.email) {
             if (formData.password) {
                 try {
-                    localStorage.setItem("Token", data?.data?.token);
+                    localStorage.setItem("FirstName", data?.data?.user?.firstName);
                     localStorage.setItem("AccountType", data?.data?.user?.accountType);
                     localStorage.setItem("Email", data?.data?.user?.email);
                     localStorage.setItem("Status", data?.data?.user?.status);
@@ -54,40 +54,40 @@ export default function Login() {
                         setIsLoading(false);
                     }
                     else {
-                        navigate('/userprof');
+                        navigate('/adminhome');
                         setIsLoading(false);
                     }
                 }
                 catch (err) {
-                    //setIsLoading(false);
+                    setIsLoading(false);
                     console.log(err);
-                    alert("response.data", err);
-                    // Swal.fire({
-                    //     icon: 'error',
-                    //     title: 'Login Failed!',
-                    //     text: 'Oops... Error While Logging!!!',
-                    // })
+                    //alert("response.data", err);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Login Failed!',
+                        text: 'Oops... Error While Logging!!!',
+                    })
                 }
             }
             
             else {
-                // setIsLoading(false);
+                setIsLoading(false);
                 // alert("Invalid Password!!!")
-                // // Swal.fire({
-                // //     icon: 'error',
-                // //     title: 'Login Failed!',
-                // //     text: 'Oops... Invalid Password!!!',
-                // // })
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Login Failed!',
+                    text: 'Oops... Invalid Password!!!',
+                })
             }
         }
         else {
-            // setIsLoading(false);
+            setIsLoading(false);
             // //alert("Invalid Email Address!!!")
-            // Swal.fire({
-            //     icon: 'error',
-            //     title: 'Login Failed!',
-            //     text: 'Oops... Invalid Email Address!!!',
-            // })
+            Swal.fire({
+                icon: 'error',
+                title: 'Login Failed!',
+                text: 'Oops... Invalid Email Address!!!',
+            })
         }
     };
 
