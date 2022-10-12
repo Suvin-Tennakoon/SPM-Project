@@ -78,6 +78,17 @@ const getCakesforSeller = (req, res) => {
     });
 };
 
+const getAcceptedCakesforSeller = (req, res) => {
+  cakeOrder
+    .find({ seller: req.params.seller, accepted: 1 })
+    .then((cakeOrder) => {
+      res.json(cakeOrder);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+};
+
 const getAllOrdersForSeller = (req, res) => {
   cakeOrder
     .find({ seller: req.params.seller })
@@ -244,4 +255,5 @@ module.exports = {
   setRejectOrder,
   getAllOrdersForSeller,
   deleteOrder,
+  getAcceptedCakesforSeller,
 };

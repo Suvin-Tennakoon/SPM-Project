@@ -11,6 +11,7 @@ const {
   setRejectOrder,
   getAllOrdersForSeller,
   deleteOrder,
+  getAcceptedCakesforSeller,
 } = require("../controllers/Order/order.controller");
 const orderRoutes = express.Router();
 
@@ -20,6 +21,7 @@ orderRoutes.post("/addCakeOrder", addNewOrder);
 orderRoutes.get("/getAllOrders", getAllCakeOrders);
 orderRoutes.get("/getCakeforShop/:seller", getCakesforSeller);
 orderRoutes.get("/getAllOrdersforCakeforShop/:seller", getAllOrdersForSeller);
+orderRoutes.get("/getAcceptedOrders/:seller", getAcceptedCakesforSeller);
 orderRoutes.get("/getCakeforCustomer/:customer", getCakesforCustomer);
 orderRoutes.get("/getOrderData/:id", getOrderData);
 orderRoutes.get("/getOrderProgress/:id", getOrderProgress);

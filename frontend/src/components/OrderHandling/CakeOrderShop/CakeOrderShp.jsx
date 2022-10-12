@@ -1,5 +1,3 @@
-import * as React from "react";
-import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -13,28 +11,18 @@ import { red } from "@mui/material/colors";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Footer from "../Footer/Footer";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useState } from "react";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import Slider from "@mui/material/Slider";
+import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
 import MuiInput from "@mui/material/Input";
 import Switch from "@mui/material/Switch";
-import PaidIcon from "@mui/icons-material/Paid";
 import TextField from "@mui/material/TextField";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import MuiAlert from "@mui/material/Alert";
 
-import {
-  FormControl,
-  InputAdornment,
-  InputLabel,
-  Snackbar,
-} from "@mui/material";
+import { Snackbar } from "@mui/material";
 import { BACKEND_DOMAIN } from "../Domain";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -119,7 +107,7 @@ export default function CakeOrderShp() {
           )
           .then((res) => {
             console.log(res.data);
-            window.location = "/sellerAllOrders"
+            window.location = "/sellerAllOrders";
           })
           .catch((err) => {
             console.log(err);
@@ -134,12 +122,16 @@ export default function CakeOrderShp() {
           rejectReason,
         };
 
-        axios.put(BACKEND_DOMAIN+"/api/orders/setRejectedOrder/"+order._id, data)
-        .then((res) => {
-          console.log(res.data);
-          window.location = "/sellerAllOrders"
-        })
-        .catch((err)=> console.log(err))
+        axios
+          .put(
+            BACKEND_DOMAIN + "/api/orders/setRejectedOrder/" + order._id,
+            data
+          )
+          .then((res) => {
+            console.log(res.data);
+            window.location = "/sellerAllOrders";
+          })
+          .catch((err) => console.log(err));
       }
     }
   };

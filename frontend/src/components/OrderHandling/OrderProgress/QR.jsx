@@ -7,6 +7,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { isFuture, parseISO } from "date-fns";
 import QrCode2Icon from "@mui/icons-material/QrCode2";
 import QRCode from "qrcode";
+import { FRONTEND_DOMAIN } from "../Domain";
 
 const style = {
   position: "absolute",
@@ -34,7 +35,7 @@ export default function QR(props) {
   const generateQrCode = async () => {
     try {
       const response = await QRCode.toDataURL(
-        "http://localhost:3000/acceptedOrders/" + props.order
+        FRONTEND_DOMAIN + "/acceptedOrders/" + props.order
       );
       setImageUrl(response);
     } catch (error) {

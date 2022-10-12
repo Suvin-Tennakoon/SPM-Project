@@ -179,7 +179,7 @@ export default function OrderProgress() {
         or delete your order before{" "}
         <h6 className="text-info">
           <b>
-            <u>{date}</u>
+            <u>{date.substring(0, 10)}</u>
           </b>
         </h6>
       </>
