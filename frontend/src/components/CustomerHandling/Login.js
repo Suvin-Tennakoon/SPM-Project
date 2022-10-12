@@ -34,7 +34,7 @@ export default function Login() {
         if (formData.email) {
             if (formData.password) {
                 try {
-                    localStorage.setItem("Token", data?.data?.token);
+                    localStorage.setItem("FirstName", data?.data?.user?.firstName);
                     localStorage.setItem("AccountType", data?.data?.user?.accountType);
                     localStorage.setItem("Email", data?.data?.user?.email);
                     localStorage.setItem("Status", data?.data?.user?.status);
@@ -54,7 +54,7 @@ export default function Login() {
                         setIsLoading(false);
                     }
                     else {
-                        navigate('/userprof');
+                        navigate('/adminhome');
                         setIsLoading(false);
                     }
                 }

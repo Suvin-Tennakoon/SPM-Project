@@ -64,7 +64,7 @@ export default function UserProfile() {
                             </div>
                         </div>
                         <div style={{ float: "right", marginTop: '40px', marginBottom: '20px' }}>
-                                <a href='/prevorders' className='btn btn-primary ml-4'>Go to Previous Orders</a>
+                                <a href={`/prevorders`} className='btn btn-primary ml-4'>Go to Previous Orders</a>
                             <a href='#' className='btn btn-warning ml-2'>Go to Shopping</a>
                         </div>
                     </article>
