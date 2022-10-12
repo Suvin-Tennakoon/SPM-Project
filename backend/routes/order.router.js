@@ -17,7 +17,7 @@ const orderRoutes = express.Router();
 orderRoutes.post("/addCakeOrder", addNewOrder);
 orderRoutes.get("/getAllOrders", getAllCakeOrders);
 orderRoutes.get("/getCakeforShop/:seller", getCakesforSeller);
-orderRoutes.get("/getCakeforCustomer/:customer", getCakesforCustomer);
+orderRoutes.get("/:customer", getCakesforCustomer);
 orderRoutes.get("/getOrderData/:id", getOrderData);
 orderRoutes.get("/getOrderProgress/:id", getOrderProgress);
 orderRoutes.put("/updateOrder/:id", updateOrder);
