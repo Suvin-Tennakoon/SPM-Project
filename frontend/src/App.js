@@ -16,6 +16,8 @@ import CardPay from './components/DeliveryHandling/CardPay';
 import AllPayments from './components/DeliveryHandling/AllPayments';
 import AddCouponCode from './components/DeliveryHandling/AddCouponCode';
 import AllCoupons from './components/DeliveryHandling/AllCoupons';
+import PayherePage from './components/DeliveryHandling/PayherePage';
+
 export default function App() {
   return (
     <div>
@@ -36,6 +38,7 @@ export default function App() {
             <Route path='/allpayments' element={<AllPayments />}></Route>
             <Route path='/addcouponcode' element={<AddCouponCode />}></Route>
             <Route path='/allcoupons' element={<AllCoupons />}></Route>
+            <Route path='/payherepage' element={<PayherePage />}></Route>
           </Routes>
     </div>
   );
