@@ -1,0 +1,67 @@
+
+
+#bodychamodi {
+	font-family:"Open Sans", Helvetica, Arial, sans-serif;
+	font-weight:300;
+	font-size: 12px;
+	line-height:30px;
+	color:#777;
+	/* background:#0CF; */
+}
+
+
+.containerchamodi {
+	max-width:400px;
+	width:100%;
+	margin:0 auto;
+	position:relative;
+}
+
+
+#contactchamodi {
+	background:#333232;
+	padding:25px;
+	margin:50px 0;
+}
+
+
+.fieldsetchamodi {
+	border: medium none !important;
+	margin: 0 0 10px;
+	min-width: 100%;
+	padding: 0;
+	width: 100%;
+}
+
+#inputchamodi {
+	width:100%;
+	border:1px solid #3a3838;
+	color: #FFF;
+	background:rgb(63, 62, 62);
+	margin:0 0 5px;
+	padding:10px;
+}
+
+
+
+#textareachamodi {
+	
+	width:100%;
+	border:1px solid #3a3838;
+	color: #FFF;
+	background:rgb(63, 62, 62);
+  resize:none;
+}
+
+.buttonch {
+	cursor:pointer;
+	width:100%;
+	border:none;
+	background:rgb(196, 19, 93);
+	color:#FFF;
+	margin:0 0 5px;
+	padding:10px;
+	font-size:15px;
+}
+
+

@@ -115,7 +115,6 @@ export default function Login() {
                         <label class="text-dark">Password</label><br />
                         <input type='password' name='password' value={password} onChange={(e) => onChange(e)} className='form-control' style={{ marginBottom: '20px' }} required='true' />
                     </div>
-
                     <button type='submit' style={{ marginBottom: '10px' }} className='btn btn-success' disabled={isLoading}>Login</button>
                 </form>
                 <div class="text-dark">
