@@ -262,6 +262,7 @@ function PdfGen() {
       .get(BACKEND_DOMAIN + "/api/orders/getAllOrdersforCakeforShop/" + seller)
       .then((res) => {
         setOrders(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         alert(err);

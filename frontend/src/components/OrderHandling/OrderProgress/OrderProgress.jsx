@@ -382,14 +382,10 @@ export default function OrderProgress() {
                   <div class="col">
                     <button
                       className="btn btn-primary circle"
-                      title="Payment"
-                      disabled={orderProgress?.advAmount === "" ? true : false}
+                      title="Proceed Payment"
+                      onClick={() => (window.location = "/paymentdet/" + id)}
                     >
-                      {orderProgress?.advAmount === "" ? (
-                        <CreditCardOffIcon />
-                      ) : (
-                        <CreditCardIcon />
-                      )}
+                      <CreditCardIcon />
                     </button>
                   </div>
                 </div>
