@@ -12,6 +12,7 @@ const {
   getAllOrdersForSeller,
   deleteOrder,
   getAcceptedCakesforSeller,
+  getDataForPayment,
 } = require("../controllers/Order/order.controller");
 const orderRoutes = express.Router();
 
@@ -25,6 +26,7 @@ orderRoutes.get("/getAcceptedOrders/:seller", getAcceptedCakesforSeller);
 orderRoutes.get("/getCakeforCustomer/:customer", getCakesforCustomer);
 orderRoutes.get("/getOrderData/:id", getOrderData);
 orderRoutes.get("/getOrderProgress/:id", getOrderProgress);
+orderRoutes.get("/getDataForPayment/:id", getDataForPayment);
 orderRoutes.put("/updateOrder/:id", updateOrder);
 orderRoutes.put("/setAcceptedOrder/:id", setAcceptedOrder);
 orderRoutes.put("/setRejectedOrder/:id", setRejectOrder);

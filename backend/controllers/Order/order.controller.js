@@ -133,6 +133,35 @@ const getOrderProgress = (req, res) => {
     });
 };
 
+const getDataForPayment = (req, res) => {
+  cakeOrder
+    .findById(req.params.id)
+    .select("seller customer cakeType cakeImage paymentType")
+    .then((x) => {
+      orderProgress
+        .findOne({ orderId: req.params.id })
+        .select("amount")
+        .then((y) => {
+          const data = {
+            _id: x._id,
+            seller: x.seller,
+            customer: x.customer,
+            cakeType: x.cakeType,
+            cakeImage: x.cakeImage,
+            amount: y.amount,
+            paymentType: x.paymentType,
+          };
+          res.json(data);
+        })
+        .catch((err) => {
+          res.json(err);
+        });
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+};
+
 const updateOrder = (req, res) => {
   cakeOrder
     .findByIdAndUpdate(req.params.id, {
@@ -256,4 +285,5 @@ module.exports = {
   getAllOrdersForSeller,
   deleteOrder,
   getAcceptedCakesforSeller,
+  getDataForPayment,
 };

@@ -16,7 +16,7 @@ class Vieworders extends React.Component {
   componentDidMount() {
     const id = this.props.match.params._id;
     axios
-      .get("http://localhost:3001/api/orders/getAcceptedOrders/:seller" + id)
+      .get("" + id)
       .then((res) => {
         this.setState({ vieworders: res.data });
       })

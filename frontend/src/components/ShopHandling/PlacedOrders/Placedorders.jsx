@@ -9,16 +9,17 @@ class Acceptedorders extends React.Component {
     super(props);
 
     this.state = {
-      Acceptorders: [""],
+      Acceptorders: [],
     };
   }
 
   componentDidMount() {
     const name = localStorage.getItem("FirstName")
+    console.log(name)
     axios
       .get("http://localhost:3001/api/orders/getAcceptedOrders/"+name)
       .then((res) => {
-        this.setState({ Acceptedorders: res.data });
+        this.setState({ Acceptorders: res.data });
       })
       .catch((err) => {
         console.log(err);
@@ -45,10 +46,13 @@ class Acceptedorders extends React.Component {
                 <b>Customer's Name</b>
               </th>
               <th scope="col">
-                <b>Phone Number</b>
+                <b>Flavour</b>
               </th>
               <th scope="col">
-                <b>Address</b>
+                <b>Size</b>
+              </th>
+              <th scope="col">
+                <b>Quantity</b>
               </th>
               <th scope="col">
                 <b>    </b>
@@ -61,8 +65,9 @@ class Acceptedorders extends React.Component {
               <tr>
                 <th scope="row">{data.cakeType}</th>
                 <td>{data.customer}</td>
-                <td>{data.pnumber}</td>
-                <td>{data.address}</td>
+                <td>{data.flavour}</td>
+                <td>{data.size}</td>
+                <td>{data.quantity}</td>
                 <td key={index}>
                   <Link to={url + data._id}>
                     <button
