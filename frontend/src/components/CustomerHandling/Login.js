@@ -20,13 +20,11 @@ export default function Login() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
 
-
     const onSubmit = async (e) => {
 
-        setIsLoading(true);
         e.preventDefault();
 
-        console.log("Inserted Data: ", formData)
+        console.log("Inserted Data: ", formData.email)
         let data = await axios
             .post('http://localhost:3001/api/customers/login', formData)
         console.log("data", data?.data)
@@ -43,23 +41,23 @@ export default function Login() {
                     //alert('Login Success...');
                     if (data?.data?.user?.status == false) {
                         navigate(`/updatepword/${data?.data?.user?._id}`);
-                        setIsLoading(false);
+                        // setIsLoading(false);
                     }
                     else if (data?.data?.user?.accountType === "Shop Owner") {
                         navigate(`/userprof`);
-                        setIsLoading(false);
+                        // setIsLoading(false);
                     }
                     else if (data?.data?.user?.accountType === "Customer") {
                         navigate(`/userprof`);
-                        setIsLoading(false);
+                        // setIsLoading(false);
                     }
                     else {
                         navigate('/adminhome');
-                        setIsLoading(false);
+                        // setIsLoading(false);
                     }
                 }
                 catch (err) {
-                    setIsLoading(false);
+                    // setIsLoading(false);
                     console.log(err);
                     //alert("response.data", err);
                     Swal.fire({
@@ -69,7 +67,7 @@ export default function Login() {
                     })
                 }
             }
-            
+
             else {
                 setIsLoading(false);
                 // alert("Invalid Password!!!")
@@ -101,7 +99,7 @@ export default function Login() {
         <div style={{ marginTop: "120px" }}>
 
             {isLoading ? <LoadingSpinner /> : renderUser}
-            <div className='container' style={{ marginTop: '30px', backgroundColor: "#d9d9d9", padding: '10px 10px 10px 10px', width:'40%', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px' }}>
+            <div className='container' style={{ marginTop: '30px', backgroundColor: "#d9d9d9", padding: '10px 10px 10px 10px', width: '40%', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px' }}>
                 <div>
                     <h3 class="text-dark mb-4">Login</h3>
                 </div>

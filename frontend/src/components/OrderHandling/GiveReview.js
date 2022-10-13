@@ -20,6 +20,8 @@ export default function GiveReview() {
 
     const [review, setReview] = useState("");
 
+    const [count, setCount] = React.useState(0);
+
     useEffect(() => {
         axios.get(`http://localhost:3001/api/orders/getOrderData/${id}`)
             .then((res) => {
@@ -37,6 +39,7 @@ export default function GiveReview() {
 
     const handlereviewChange = (e) => {
 
+        setCount(e.target.value.length)
         e.preventDefault();
         setReview(e.target.value);
     }
@@ -97,7 +100,8 @@ export default function GiveReview() {
             <form onSubmit={(e) => saveReview(e)}>
                 <div style={{ marginTop: '30px' }}>
                     <label>Give Your Review</label><br />
-                    <textarea style={{ width: '50%', backgroundColor: 'white', color: 'Black' }} className='form-control' rows='5' value={review} onChange={(e) => handlereviewChange(e)}></textarea>
+                    <textarea style={{ width: '50%', backgroundColor: 'white', color: 'Black' }} className='form-control' rows='5' maxlength="10" value={review} onChange={(e) => handlereviewChange(e)}required></textarea>
+                    <p>[{10-count}/10]</p>
                 </div>
 
                 <button type='submit' style={{ marginBottom: '10px', marginTop: '20px' }} className='btn btn-primary'>Submit Review</button>
