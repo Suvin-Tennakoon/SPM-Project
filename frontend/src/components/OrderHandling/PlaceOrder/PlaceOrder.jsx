@@ -1,31 +1,21 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import StepContent from "@mui/material/StepContent";
 import { Container } from "@mui/system";
-import NavBar from "../Navbar/Navbar";
 import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
-import StepConnector, {
-  stepConnectorClasses,
-} from "@mui/material/StepConnector";
 import CakeIcon from "@mui/icons-material/Cake";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import PublishedWithChangesIcon from "@mui/icons-material/PublishedWithChanges";
 import Footer from "../Footer/Footer";
-import { useState } from "react";
+import React, { useState, useRef } from "react";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
 import MuiAlert from "@mui/material/Alert";
-import isPast from "date-fns/isPast";
 import parseISO from "date-fns/parseISO";
-import isAfter from "date-fns/isAfter";
 import isFuture from "date-fns/isFuture";
 import axios from "axios";
 import Backdrop from "@mui/material/Backdrop";
@@ -33,6 +23,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import "./placeorder.css";
 import PhoneSignUp from "./PhoneSignUp";
 import { BACKEND_DOMAIN } from "../Domain";
+import DrawerDesign from "./DrawerDesign";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -55,31 +46,6 @@ ColorlibStepIcon.propTypes = {
    */
   icon: PropTypes.node,
 };
-
-const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
-  [`&.${stepConnectorClasses.alternativeLabel}`]: {
-    top: 22,
-  },
-  [`&.${stepConnectorClasses.active}`]: {
-    [`& .${stepConnectorClasses.line}`]: {
-      backgroundImage:
-        "linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)",
-    },
-  },
-  [`&.${stepConnectorClasses.completed}`]: {
-    [`& .${stepConnectorClasses.line}`]: {
-      backgroundImage:
-        "linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)",
-    },
-  },
-  [`& .${stepConnectorClasses.line}`]: {
-    height: 3,
-    border: 0,
-    backgroundColor:
-      theme.palette.mode === "dark" ? theme.palette.grey[800] : "#eaeaf0",
-    borderRadius: 1,
-  },
-}));
 
 const ColorlibStepIconRoot = styled("div")(({ theme, ownerState }) => ({
   backgroundColor:
@@ -151,8 +117,8 @@ export default function VerticalLinearStepper() {
   const [province, setProvince] = useState("");
   const [pnumber, setPhone] = useState("");
   const [paymentType, setPaymentType] = useState("");
-  const [thumbnail, setThumbnail] = useState(null);
   const [orderid, setOrderid] = useState("");
+  const [existingDesign, setExistingDesign] = useState(false);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -161,6 +127,7 @@ export default function VerticalLinearStepper() {
   const [errormsg, setErrormsg] = useState("");
   const [openSnak, setOpenSnak] = useState(false);
   const [openBkdrop, setOpenBkdrop] = useState(false);
+  const inputRef = useRef(null);
 
   function getPhoneNumber(val) {
     setPhone(val);
@@ -176,8 +143,6 @@ export default function VerticalLinearStepper() {
   };
 
   const handleImage = (e) => {
-    setThumbnail(e.target.files[0]);
-
     const file = e.target.files[0];
     const fileReader = new FileReader();
 
@@ -191,7 +156,6 @@ export default function VerticalLinearStepper() {
       };
     } else {
       setImage("");
-      setThumbnail(null);
     }
   };
 
@@ -311,7 +275,6 @@ export default function VerticalLinearStepper() {
 
   return (
     <>
-      <NavBar />
       <Snackbar
         open={openSnak}
         autoHideDuration={10000}
@@ -363,16 +326,78 @@ export default function VerticalLinearStepper() {
                   </select>
                   <br />
                   <br />
-                  <div class="container text-center">
-                    <div class="row">
-                      <div class="col" style={{ padding: "0px" }}>
-                        <label for="formFile" class="form-label">
-                          Insert a picture of your cake design
+
+                  {/*  */}
+                  {/*  */}
+                  {/*  */}
+
+                  <div class="row">
+                    <div class="col">
+                      Cake Design : <span style={{ color: "#ff0000" }}>*</span>
+                    </div>
+                    <div class="col">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          style={{
+                            accentColor: "#ff214f",
+                            width: "20px",
+                            height: "20px",
+                          }}
+                          type="radio"
+                          name="designchoice"
+                          id="sellerdesign"
+                          checked={existingDesign}
+                          onChange={(e) => setExistingDesign(true)}
+                        />
+                        <label
+                          style={{ marginLeft: "10px" }}
+                          class="form-check-label"
+                          for="sellerdesign"
+                        >
+                          Select from seller's designs
                         </label>
-                        <span style={{ color: "#ff0000" }}>*</span>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          style={{
+                            accentColor: "#ff214f",
+                            width: "20px",
+                            height: "20px",
+                          }}
+                          name="designchoice"
+                          type="radio"
+                          id="uploadcake"
+                          checked={!existingDesign}
+                          onChange={(e) => {
+                            setExistingDesign(false);
+                            setImage("");
+                          }}
+                        />
+                        <label
+                          style={{ marginLeft: "10px" }}
+                          class="form-check-label"
+                          for="uploadcake"
+                        >
+                          Upload a desired design
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <br />
+                  {existingDesign ? (
+                    <DrawerDesign imageSetter={setImage} />
+                  ) : (
+                    <div class="container text-center">
+                      <div style={{ padding: "0px" }}>
                         <div className="form-group">
                           <input
                             type="file"
+                            style={{ display: "none" }}
+                            ref={inputRef}
                             className="form-control"
                             id="formFile"
                             accept="image/*"
@@ -380,20 +405,28 @@ export default function VerticalLinearStepper() {
                           />
                         </div>
                       </div>
-                      <div class="col">
-                        <img
-                          src={
-                            thumbnail
-                              ? URL.createObjectURL(thumbnail)
-                              : "https://www.survivorsuk.org/wp-content/uploads/2017/01/no-image.jpg"
-                          }
-                          style={{ width: "200px", height: "200px" }}
-                        />
-                      </div>
                     </div>
+                  )}
+                  <div style={{ textAlign: "center" }}>
+                    <img
+                      id="cakeuploadimage"
+                      src={
+                        image !== ""
+                          ? image
+                          : "https://media2.giphy.com/media/jJeLpmVIW9k4whPjLs/giphy.gif?cid=6c09b952esh8gzqxqo9p3x2tehiarzoz9wb2y5zjwppkrcd5&rid=giphy.gif&ct=s"
+                      }
+                      onClick={() => {
+                        if (!existingDesign) inputRef.current.click();
+                      }}
+                    />
                   </div>
+
                   <br />
                   <br />
+
+                  {/*  */}
+                  {/*  */}
+                  {/*  */}
 
                   <div class="row">
                     <div class="col">

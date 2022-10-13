@@ -3,3 +3,14 @@
   border-radius: 1%;
   padding: 50px;
 }
+
+#cakeuploadimage {
+  width: 200px;
+  height: 200px;
+  transition: .5s ease;
+}
+
+#cakeuploadimage:hover {
+  cursor: pointer;
+  opacity:0.5
+}
