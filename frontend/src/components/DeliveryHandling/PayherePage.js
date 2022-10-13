@@ -2,21 +2,22 @@ import React, { useState } from "react"
 import "payhere-embed-sdk/dist/react.css"
 import Payhere from "payhere-embed-sdk/dist/react"
 
-const SubscriptionPage = () => {
+const PayherePage = () => {
   const [success, setSuccess] = useState(false)
   const [showPayhere, setShowPayhere] = useState(false)
 
   return (
     <div>
-
-
-      {/* <Button
+<div id="payhere-modal"></div>
+      <button
+      className="btn btn-primary ml-4"
         onClick={() => setShowPayhere(true)}
+        style={{ backgroundColor: "#fe0035", color: "white"}}
       >
-        Continue to payment
-      </Button> */}
+        Pay Now
+      </button>
 
-      {/* <Payhere
+      <Payhere
         selector="#payhere-modal"
         embedURL={"https://app.payhere.co/altlabs/coffee"}
         open={showPayhere}
@@ -36,12 +37,8 @@ const SubscriptionPage = () => {
             console.log("Payment failed")
           }
         }}
-      /> */}
-
-
-
-
-      
+      />
     </div>
   )
 }
+export default PayherePage;

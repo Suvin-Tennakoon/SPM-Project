@@ -78,6 +78,28 @@ const getCakesforSeller = (req, res) => {
     });
 };
 
+const getAcceptedCakesforSeller = (req, res) => {
+  cakeOrder
+    .find({ seller: req.params.seller, accepted: 1 })
+    .then((cakeOrder) => {
+      res.json(cakeOrder);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+};
+
+const getAllOrdersForSeller = (req, res) => {
+  cakeOrder
+    .find({ seller: req.params.seller })
+    .then((cakeOrder) => {
+      res.json(cakeOrder);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+};
+
 const getCakesforCustomer = (req, res) => {
   cakeOrder
     .find({ customer: req.params.customer })
@@ -208,6 +230,19 @@ const setRejectOrder = (req, res) => {
     });
 };
 
+const deleteOrder = (req, res) => {
+  cakeOrder
+    .findByIdAndDelete(req.params.id)
+    .then(() => {
+      orderProgress.findOneAndDelete({ orderId: req.params.id }).then(() => {
+        res.json("Deleted");
+      });
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+};
+
 module.exports = {
   addNewOrder,
   getAllCakeOrders,
@@ -218,4 +253,7 @@ module.exports = {
   updateOrder,
   setAcceptedOrder,
   setRejectOrder,
+  getAllOrdersForSeller,
+  deleteOrder,
+  getAcceptedCakesforSeller,
 };

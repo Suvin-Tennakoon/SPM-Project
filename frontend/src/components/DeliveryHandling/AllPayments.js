@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 
 const Record = (props) => (
@@ -8,14 +7,6 @@ const Record = (props) => (
     <td>{props.payments.position}</td>
     <td>{props.payments.level}</td>
     <td>
-      {/* <Link className="btn btn-link" to={`/edit/${props.payments._id}`}>Edit</Link> | */}
-      {/* <button className="btn btn-link"
-       onClick={() => {
-         props.deleteRecord(props.payments._id);
-       }}
-     >
-       Delete
-     </button> */}
     </td>
   </tr>
 );
@@ -96,13 +87,6 @@ export default function RecordList() {
               </tr>
             </tbody>
           </Table>
-          {/* <h6>
-            {payments._id}
-            <br></br>
-            {payments.userId}
-            <br></br>
-            {payments.orderNo}
-       </h6> */}
         </div></div>
       );
     });
@@ -116,39 +100,3 @@ export default function RecordList() {
     </div>
   );
 }
-
-// function DarkExample() {
-//   return (
-//     <Table striped bordered hover variant="dark">
-//       <thead>
-//         <tr>
-//           <th>#</th>
-//           <th>First Name</th>
-//           <th>Last Name</th>
-//           <th>Username</th>
-//         </tr>
-//       </thead>
-//       <tbody>
-//         <tr>
-//           <td>1</td>
-//           <td>Mark</td>
-//           <td>Otto</td>
-//           <td>@mdo</td>
-//         </tr>
-//         <tr>
-//           <td>2</td>
-//           <td>Jacob</td>
-//           <td>Thornton</td>
-//           <td>@fat</td>
-//         </tr>
-//         <tr>
-//           <td>3</td>
-//           <td colSpan={2}>Larry the Bird</td>
-//           <td>@twitter</td>
-//         </tr>
-//       </tbody>
-//     </Table>
-//   );
-// }
-
-// export default DarkExample;

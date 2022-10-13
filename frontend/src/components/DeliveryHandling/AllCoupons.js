@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 
 const Record = (props) => (
@@ -8,17 +8,10 @@ const Record = (props) => (
     <td>{props.couponcodes.position}</td>
     <td>{props.couponcodes.level}</td>
     <td>
-      {/* <Link className="btn btn-link" to={`/edit/${props.payments._id}`}>Edit</Link> | */}
-      {/* <button className="btn btn-link"
-       onClick={() => {
-         props.deleteRecord(props.payments._id);
-       }}
-     >
-       Delete
-     </button> */}
     </td>
   </tr>
 );
+
 
 export default function RecordList() {
   const [couponcodes, setRecords] = useState([]);
@@ -90,13 +83,6 @@ export default function RecordList() {
               </tr>
             </tbody>
           </Table>
-          {/* <h6>
-            {payments._id}
-            <br></br>
-            {payments.userId}
-            <br></br>
-            {payments.orderNo}
-       </h6> */}
         </div></div>
       );
     });
