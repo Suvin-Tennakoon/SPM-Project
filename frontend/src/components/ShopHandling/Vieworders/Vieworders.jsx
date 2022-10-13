@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, useParams, useHistory } from "react-router-dom";
 
 
-class vieworders extends React.Component {
+class Vieworders extends React.Component {
   
   constructor(props) {
     super(props);
@@ -210,4 +210,4 @@ class vieworders extends React.Component {
   }
 }
 
-export default vieworders;
+export default Vieworders;

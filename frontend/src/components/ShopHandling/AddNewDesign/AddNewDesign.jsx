@@ -119,17 +119,19 @@ class AddNewDesign extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="bodychamodi">
         <br />
         <br />
-        <div class="container">
-          <div id="contact">
+        <div class="containerchamodi">
+          <div id="contactchamodi">
             <h3>Add New Designs</h3>
             <h4>Add new designs for our CakeHut</h4>
+            <div className="fieldsetchamodi">
             <fieldset>
               <input
-                placeholder="Shop Name"
+                placeholder="Your Name"
                 type="text"
+                id="inputchamodi"
                 tabindex="1"
                 onChange={this.setshopname}
                 value={this.state.shname}
@@ -142,6 +144,7 @@ class AddNewDesign extends React.Component {
                 placeholder="Design name"
                 type="text"
                 tabindex="1"
+                id="inputchamodi"
                 onChange={this.setdesignname}
                 value={this.state.dname}
                 required
@@ -152,6 +155,7 @@ class AddNewDesign extends React.Component {
               <textarea
                 placeholder="Details about Design"
                 tabindex="2"
+                id="textareachamodi"
                 value={this.state.ddetails}
                 onChange={this.setdesigndetails}
                 required
@@ -162,6 +166,7 @@ class AddNewDesign extends React.Component {
                 placeholder="Price"
                 type="text"
                 tabindex="3"
+                id="inputchamodi"
                 onChange={this.setdesignprice}
                 value={this.state.dprice}
                 required
@@ -192,7 +197,7 @@ class AddNewDesign extends React.Component {
 
               <input
                 type="file"
-                className="form-control"
+                className="form-control,buttonch"
                 id="formFile"
                 accept="image/*"
                 onChange={(e) => this.handleImage(e)}
@@ -202,6 +207,7 @@ class AddNewDesign extends React.Component {
               <button
                 name="submit"
                 type="submit"
+                className="buttonch"
                 id="contact-submit"
                 data-submit="...Sending"
                 onClick={this.addnewdesign}
@@ -209,6 +215,7 @@ class AddNewDesign extends React.Component {
                 Add
               </button>
             </fieldset>
+            </div>
           </div>
         </div>
       </div>
