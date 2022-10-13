@@ -35,7 +35,7 @@ const getalldesign = (req, res) => {
 
 const getoneownersdesign = (req, res) => {
   putnewdesign
-    .find(req.params.shopname)
+    .find(req.params.username)
     .then((putnewdesign) => res.json(putnewdesign))
     .catch((err) => res.status(400).json("Error" + err));
 };

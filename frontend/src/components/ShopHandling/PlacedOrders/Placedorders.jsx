@@ -14,8 +14,9 @@ class Acceptedorders extends React.Component {
   }
 
   componentDidMount() {
+    const name = localStorage.getItem("FirstName")
     axios
-      .get("http://localhost:3001/api/orders/getAcceptedOrders/:seller")
+      .get("http://localhost:3001/api/orders/getAcceptedOrders/"+name)
       .then((res) => {
         this.setState({ Acceptedorders: res.data });
       })
@@ -50,7 +51,7 @@ class Acceptedorders extends React.Component {
                 <b>Address</b>
               </th>
               <th scope="col">
-                <b></b>
+                <b>    </b>
               </th>
             </tr>
           </thead>
@@ -60,14 +61,13 @@ class Acceptedorders extends React.Component {
               <tr>
                 <th scope="row">{data.cakeType}</th>
                 <td>{data.customer}</td>
-                <td>{data.deliverData.pnumber}</td>
-                <td>{data.deliverData.address}</td>
+                <td>{data.pnumber}</td>
+                <td>{data.address}</td>
                 <td key={index}>
                   <Link to={url + data._id}>
                     <button
                       type="submit"
                       class="btn btn-danger"
-                      style={{ marginRight: 110 }}
                     >
                       View Details
                     </button>

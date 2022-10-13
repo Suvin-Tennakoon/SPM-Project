@@ -1,26 +1,14 @@
-.order{
+.orderchamodi{
   text-align: left;
   color: white;
 }
 
-.ctext{
-  margin-left: 80%;
-  margin-bottom: 20px;  
-  color: white;
-}
-
-.chh3{
-  margin-top: 10px;
-}
-
-button{
+.buttonchamo{
   border-radius: 5px;
   block-size: 30px;
   text-size-adjust: 5;
 }
-#tb{
-  border-collapse: collapse;
-}
+
 .sawrap{
   display: flex;
   flex-wrap: wrap;
@@ -29,30 +17,8 @@ button{
   margin-bottom:20px ;
   background-color: rgb(49, 48, 46);
 }
-/* Bootstrap 4 text input with search icon */
 
-.has-search .form-control {
-  padding-left: 2.375rem;
-}
 
-.has-search .form-control-feedback {
-  position: absolute;
-  z-index: 2;
-  display: block;
-  width: 2.375rem;
-  height: 2.375rem;
-  line-height: 2.375rem;
-  text-align: center;
-  pointer-events: none;
-  color: #aaa;
-}
 
-/* Styles for wrapping the search box */
 
-.main {
-  /* width: 20%; */
-  /* margin: 50px auto;  */
-  margin-top: auto;
-  margin-left:487px;
-}
 

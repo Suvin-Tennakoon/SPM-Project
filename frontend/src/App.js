@@ -22,7 +22,7 @@ import CardPay from "./components/DeliveryHandling/CardPay";
 import AllPayments from "./components/DeliveryHandling/AllPayments";
 import AddCouponCode from "./components/DeliveryHandling/AddCouponCode";
 import AllCoupons from "./components/DeliveryHandling/AllCoupons";
-import vieworders from "./components/ShopHandling/Vieworders/Vieworders";
+import Vieworders from "./components/ShopHandling/Vieworders/Vieworders";
 import PayherePage from './components/DeliveryHandling/PayherePage';
 import AllCustomers from './components/AdminHandling/AllCustomers';
 import AllReviews from './components/AdminHandling/AllReviews';
@@ -49,7 +49,7 @@ export default function App() {
         <Route path="/addcouponcode" element={<AddCouponCode />}></Route>
         <Route path="/allcoupons" element={<AllCoupons />}></Route>
 
-        <Route path="/vieworders" element={<vieworders/>}></Route>
+        <Route path="/vieworders" element={<Vieworders/>}></Route>
         <Route path="/addesign" element={<AddNewDesign />}></Route>
         <Route path="/displaydesign" exact element={<DisplayDesigns />}></Route>
         <Route path="/update/:id" element={<Updatedesign />}></Route>

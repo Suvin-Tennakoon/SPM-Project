@@ -79,7 +79,7 @@ class DisplayDesigns extends React.Component {
                     <div className="card-body">
                       <h5 className="card-title"></h5>
                       <p className="card-text">
-                        <ul className="order">
+                        <ul className="orderchamodi">
                           <h5>
                             <center>{data.designname}</center>
                           </h5>
@@ -89,11 +89,11 @@ class DisplayDesigns extends React.Component {
                           </p>
                         </ul>
                       </p>
-                      <div key={index}>
+                      <div key={index} className="buttonchamo">
                         <button
                           type="button"
-                          className="btn btn-primary"
-                          style={{ marginLeft: 10 }}
+                          className="btn btn-primary btn-sm"
+                          style={{ marginLeft: 20 }}
                           onClick={(e) => {
                             this.deletedesign(data._id);
                           }}
@@ -103,8 +103,8 @@ class DisplayDesigns extends React.Component {
                         <Link to={url + data._id}>
                           <button
                             type="button"
-                            className="btn btn-primary"
-                            style={{ marginLeft: 40 }}
+                            className="btn btn-primary btn-sm"
+                            style={{ marginLeft: 80 }}
                           >
                             Update
                           </button>
