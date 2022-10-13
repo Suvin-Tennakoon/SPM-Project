@@ -9,7 +9,7 @@ export default function PrevOrders() {
   const [orderDetails, setOrderDetails] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/orders/${fname}`)
+    axios.get(`http://localhost:3001/api/orders/getCakeforCustomer/${fname}`)
       .then((res) => {
         console.log(res.data);
         setOrderDetails(res.data);

@@ -11,6 +11,7 @@ const {
   updatedesign,
   deletedesign,
   getoneownersdesign,
+  getSellersDesigns,
 } = require("../controllers/Shops/AddNewDesign.controller");
 
 
@@ -19,6 +20,7 @@ shopRoutes.get("/all", getalldesign);
 shopRoutes.get("/getone/:id", getonedesign);
 shopRoutes.put("/update/:id", updatedesign);
 shopRoutes.delete("/delete/:id", deletedesign);
+shopRoutes.get("/getSellersDesigns/:username",getSellersDesigns);
 shopRoutes.get("/getdesign/:username", getoneownersdesign);
 
 

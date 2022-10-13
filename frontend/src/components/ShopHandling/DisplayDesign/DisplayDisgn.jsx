@@ -32,8 +32,10 @@ class DisplayDesigns extends React.Component {
   }
 
   componentDidMount() {
+    const name = localStorage.getItem("FirstName");
+    console.log(name)
     axios
-      .get("http://localhost:3001/api/shops/all")
+      .get("http://localhost:3001/api/shops/getdesign/"+name)
       .then((res) => {
         //get all info about a supplier
         this.setState({ designs: res.data });
@@ -43,12 +45,11 @@ class DisplayDesigns extends React.Component {
       });
   }
 
-    
   render() {
     //const data=[this.state.props]
-    
-  const sp = this.state.designs
-  console.log(sp)
+
+    const sp = this.state.designs;
+    console.log(sp);
     return (
       <diV>
         <div>
