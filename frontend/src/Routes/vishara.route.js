@@ -6,6 +6,7 @@ import AllPayments from "../components/DeliveryHandling/AllPayments";
 import AddCouponCode from "../components/DeliveryHandling/AddCouponCode";
 import AllCoupons from "../components/DeliveryHandling/AllCoupons";
 import PayherePage from "../components/DeliveryHandling/PayherePage";
+import Rating from '../components/DeliveryHandling/Rating';
 
 export default function VISHARA_ROUTES() {
   return (
@@ -17,6 +18,9 @@ export default function VISHARA_ROUTES() {
       <Route path="/addcouponcode" element={<AddCouponCode />}></Route>
       <Route path="/allcoupons" element={<AllCoupons />}></Route>
       <Route path="/payherepage" element={<PayherePage />}></Route>
+      <Route path="/rating" element={<Rating />}></Route>
     </>
   );
 }
+
+
