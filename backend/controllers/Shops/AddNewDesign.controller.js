@@ -34,7 +34,7 @@ const getalldesign = (req, res) => {
 };
 
 const getSellersDesigns = (req, res) => {
-  putnewdesign.findOne({ username: req.params.username },{_id:0,designimage:1}).then((result) => {
+  putnewdesign.find({ username: req.params.username },{_id:0,designimage:1}).then((result) => {
     res
       .json(result)
       .catch((err) => {
@@ -42,6 +42,7 @@ const getSellersDesigns = (req, res) => {
       });
   });
 };
+
 const getoneownersdesign = (req, res) => {
   putnewdesign
     .find({ username: req.params.username })

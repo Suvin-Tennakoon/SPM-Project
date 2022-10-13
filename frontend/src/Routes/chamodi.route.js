@@ -4,11 +4,12 @@ import DisplayDesigns from "../components/ShopHandling/DisplayDesign/DisplayDisg
 import Updatedesign from "../components/ShopHandling/UpdateDesign/UpdateDesign";
 import Acceptedorders from "../components/ShopHandling/PlacedOrders/Placedorders";
 import UpdateOwner from "../components/ShopHandling/Updateowner/UpdateOwner";
+import Vieworders from "../components/ShopHandling/Vieworders/Vieworders";
 
 export default function CHAMODI_ROUTES() {
   return (
     <>
-      <Route path="/vieworders" element={<vieworders />}></Route>
+      <Route path="/vieworders" element={<Vieworders />}></Route>
       <Route path="/addesign" element={<AddNewDesign />}></Route>
       <Route path="/displaydesign" exact element={<DisplayDesigns />}></Route>
       <Route path="/update/:id" element={<Updatedesign />}></Route>

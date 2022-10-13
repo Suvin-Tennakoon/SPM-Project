@@ -32,7 +32,7 @@ class DisplayDesigns extends React.Component {
   }
 
   componentDidMount() {
-    const name = localStorage.getItem("firstName");
+    const name = localStorage.getItem("FirstName");
     console.log(name)
     axios
       .get("http://localhost:3001/api/shops/getdesign/"+name)
