@@ -20,6 +20,8 @@ export default function GiveReview() {
 
     const [review, setReview] = useState("");
 
+    const [count, setCount] = React.useState(0);
+
     useEffect(() => {
         axios.get(`http://localhost:3001/api/orders/getOrderData/${id}`)
             .then((res) => {

@@ -37,10 +37,6 @@ export default function App() {
             <Route path='/prevorders' element={isAccType === "Admin"||isAccType === "Shop Owner"||isAccType === "Customer" ? <PrevOrders /> : <Login />}></Route>
             <Route path='/orderreview' element={isAccType === "Admin"||isAccType === "Shop Owner"||isAccType === "Customer" ? <Reviews /> : <Login />}></Route>
             <Route path='/givereview/:id' element={isAccType === "Admin"||isAccType === "Shop Owner"||isAccType === "Customer" ? <GiveReview /> : <Login />}></Route>
-            <Route path='/userprof' element={<UserProfile />}></Route>
-            <Route path='/updateprof/:id' element={<UpdateProf />}></Route>
-            <Route path='/prevorders' element={<PrevOrders />}></Route>
-            <Route path='/orderreview' element={<Reviews />}></Route>
             <Route path='/paymentdet' element={<PaymentDet />}></Route>
             <Route path='/paymentinv' element={<PaymentInv />}></Route>
             <Route path='/cardpay' element={<CardPay />}></Route>
