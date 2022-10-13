@@ -34,13 +34,14 @@ const getalldesign = (req, res) => {
 };
 
 const getSellersDesigns = (req, res) => {
-  putnewdesign.find({ username: req.params.username },{_id:0,designimage:1}).then((result) => {
-    res
-      .json(result)
-      .catch((err) => {
-        res.json(err);
-      });
-  });
+  putnewdesign
+    .find({ username: req.params.username }, { _id: 0, designimage: 1 })
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
 };
 
 const getoneownersdesign = (req, res) => {
