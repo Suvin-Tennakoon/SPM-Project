@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import "./AddNewDesign.css";
 import axios from "axios";
 
+const name = localStorage.getItem("username");
+
+
 class AddNewDesign extends React.Component {
   constructor(props) {
     super(props);

@@ -35,7 +35,7 @@ class Acceptedorders extends React.Component {
         <br />
         <br />
         <br />
-
+          <center><h4>Accepted Orders</h4></center><br/>
         <table className="table table-striped">
           <thead>
             <tr>
