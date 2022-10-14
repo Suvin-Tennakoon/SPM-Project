@@ -268,7 +268,7 @@ const RegisterUser = () => {
                                 <option selected>Choose...</option>
                                 <option>Shop Owner</option>
                                 <option>Customer</option>
-                                <option>Admin</option>
+                                {/* <option>Admin</option> */}
                             </select>
                         </div>
                     </div>

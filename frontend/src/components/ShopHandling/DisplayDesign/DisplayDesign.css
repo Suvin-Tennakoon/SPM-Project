@@ -1,0 +1,24 @@
+.orderchamodi{
+  text-align: left;
+  color: white;
+}
+
+.buttonchamo{
+  border-radius: 5px;
+  block-size: 30px;
+  text-size-adjust: 5;
+}
+
+.sawrap{
+  display: flex;
+  flex-wrap: wrap;
+}
+.CScard{
+  margin-bottom:20px ;
+  background-color: rgb(49, 48, 46);
+}
+
+
+
+
+
