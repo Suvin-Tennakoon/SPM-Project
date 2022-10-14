@@ -23,6 +23,8 @@
     "emailjs": "^4.0.1",
     "firebase": "^9.9.3",
     "formik": "^2.2.9",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.25",
     "payhere-embed-sdk": "^0.7.1",
     "qrcode": "^1.5.1",
     "react": "^18.2.0",

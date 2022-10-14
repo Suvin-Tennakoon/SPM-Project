@@ -1,31 +1,26 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useParams, useHistory } from "react-router-dom";
 import generatePDFalldesign from "../Report/Reportgenerator";
 import { withRouter } from "react-router";
 import "./Vieworder.css";
 
-class Vieworders extends React.Component {
-  constructor(props) {
-    super(props);
+ export default function Vieworders()  {
+  const [vieworders, setViewOrders] = useState('');
+  const {id}= useParams();
+useEffect(()=> {
+  axios
+  .get("http://localhost:3001/api/orders/getOrderData/" + id)
+  .then((res) => {
+    setViewOrders(res.data)
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+},[])
 
-    this.state = {
-      vieworders: {},
-    };
-  }
-
-  componentDidMount() {
-    const id = window.location.href.split("/")[3];
-    axios
-      .get("http://localhost:3001/api/orders/getOrderData/" + id)
-      .then((res) => {
-        this.setState({ vieworders: res.data });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-  render() {
+ 
+  
     return (
       <div>
         <br />
@@ -60,11 +55,11 @@ class Vieworders extends React.Component {
           </thead>
           <tbody>
             <tr>
-              <th scope="row">{this.state.vieworders.cakeType}</th>
-              {/* <td>{data.customer}</td>
-              <td>{data.flavour}</td>
-              <td>{data.size}</td>
-              <td>{data.quantity}</td> */}
+              <th scope="row">{vieworders.cakeType}</th>
+              <td>{vieworders.customer}</td>
+              <td>{vieworders.flavour}</td>
+              <td>{vieworders.size}</td>
+              <td>{vieworders.quantity}</td>
             </tr>
           </tbody>
         </table>
@@ -73,7 +68,7 @@ class Vieworders extends React.Component {
           className="btn btn-primary"
           style={{ backgroundColor: "#000000", marginLeft: "1120px" }}
           onClick={() => {
-            generatePDFalldesign(this.state.vieworders);
+            generatePDFalldesign(vieworders);
           }}
         >
           Generate Report
@@ -81,6 +76,7 @@ class Vieworders extends React.Component {
       </div>
     );
   }
-}
 
-export default Vieworders;
+ 
+
+
