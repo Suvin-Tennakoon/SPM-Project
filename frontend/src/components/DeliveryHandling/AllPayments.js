@@ -6,8 +6,7 @@ const Record = (props) => (
     <td>{props.payments.name}</td>
     <td>{props.payments.position}</td>
     <td>{props.payments.level}</td>
-    <td>
-    </td>
+    <td></td>
   </tr>
 );
 
@@ -50,44 +49,48 @@ export default function RecordList() {
     return payments.map((payments) => {
       return (
         <div>
-        <h4 style={{marginTop: "130px", textAlign:"center"}}>All Payment Details</h4>
-        <div className="container text-dark" style={{marginTop: "-60px"}}>
-          <br/><br/>
-          <h4>All Payment Details</h4>
-          <Record
-            payments={payments}
-            deleteRecord={() => deleteRecord(payments._id)}
-            key={payments._id}
-          />
-<h4>All Payment Details</h4>
-          <Table striped bordered hover variant="dark">
-            <thead>
-              <tr>
-                <th>User ID</th>
-                <th>Payment ID</th>
-                <th>Order No</th>
-                <th>Order Type</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Amount</th>
-                <th>Coupon Code</th>
-              </tr>
-            </thead>
+          <h4 style={{ marginTop: "130px", textAlign: "center" }}>
+            All Payment Details
+          </h4>
+          <div className="container text-dark" style={{ marginTop: "-60px" }}>
+            <br />
+            <br />
+            <h4>All Payment Details</h4>
+            <Record
+              payments={payments}
+              deleteRecord={() => deleteRecord(payments._id)}
+              key={payments._id}
+            />
+            <h4>All Payment Details</h4>
+            <Table striped bordered hover variant="dark">
+              <thead>
+                <tr>
+                  <th>User ID</th>
+                  <th>Payment ID</th>
+                  <th>Order No</th>
+                  <th>Order Type</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Amount</th>
+                  <th>Coupon Code</th>
+                </tr>
+              </thead>
 
-            <tbody>
-              <tr>
-                <td>{payments.userId}</td>
-                <td>{payments.paymentId}</td>
-                <td>{payments.orderNo}</td>
-                <td>{payments.orderType}</td>
-                <td>{payments.date}</td>
-                <td>{payments.time}</td>
-                <td>{payments.amount}</td>
-                <td>{payments.couponCode}</td>
-              </tr>
-            </tbody>
-          </Table>
-        </div></div>
+              <tbody>
+                <tr>
+                  <td>{payments.userId}</td>
+                  <td>{payments.paymentId}</td>
+                  <td>{payments.orderNo}</td>
+                  <td>{payments.orderType}</td>
+                  <td>{payments.date}</td>
+                  <td>{payments.time}</td>
+                  <td>{payments.amount}</td>
+                  <td>{payments.couponCode}</td>
+                </tr>
+              </tbody>
+            </Table>
+          </div>
+        </div>
       );
     });
   }
