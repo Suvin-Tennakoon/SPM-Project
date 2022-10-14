@@ -8,7 +8,7 @@ export default function NavBar() {
   let accountType = localStorage.getItem("AccountType");
 
   const handleLogOut = () => {
-    localStorage.removeItem("Token");
+    localStorage.removeItem("FirstName");
     localStorage.removeItem("AccountType");
     localStorage.removeItem("Email");
     localStorage.removeItem("Status");

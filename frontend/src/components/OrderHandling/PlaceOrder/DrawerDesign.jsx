@@ -14,7 +14,7 @@ export default function DrawerDesign(props) {
   const [state, setState] = React.useState(true);
   const [images, setImages] = useState([]);
 
-  const seller = "chamodi";
+  const seller = props.seller;
 
   const darkTheme = createTheme({
     palette: {

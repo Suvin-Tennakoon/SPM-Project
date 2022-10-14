@@ -10,7 +10,6 @@ const newOrderProgressSchema = new Schema({
   decision: Number,
   amount: String,
   modPeriod: String,
-  advAmount: String,
   rejectReason: String,
 });
 

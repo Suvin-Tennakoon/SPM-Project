@@ -10,7 +10,7 @@ import CakeIcon from "@mui/icons-material/Cake";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import PublishedWithChangesIcon from "@mui/icons-material/PublishedWithChanges";
 import Footer from "../Footer/Footer";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Snackbar from "@mui/material/Snackbar";
@@ -24,6 +24,7 @@ import "./placeorder.css";
 import PhoneSignUp from "./PhoneSignUp";
 import { BACKEND_DOMAIN } from "../Domain";
 import DrawerDesign from "./DrawerDesign";
+import { useParams } from "react-router-dom";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -101,6 +102,9 @@ const style = {
 };
 
 export default function VerticalLinearStepper() {
+  const customer = localStorage.getItem("FirstName");
+  const { seller } = useParams();
+
   const [image, setImage] = React.useState("");
   const [cakeType, setCakeType] = useState("");
   const [sugarType, setSugarType] = useState("");
@@ -244,8 +248,8 @@ export default function VerticalLinearStepper() {
       };
 
       const cakeOrder = {
-        seller: "john",
-        customer: "doe",
+        seller: seller,
+        customer: customer,
         cakeType: cakeType,
         size: size,
         flavour: flavour,
@@ -272,6 +276,14 @@ export default function VerticalLinearStepper() {
         });
     }
   };
+
+  useEffect(() => {
+    if (customer === "" || customer === null) {
+      window.location = "/login";
+    } else if (seller === null || seller === "") {
+      window.location = "/unauthorized";
+    }
+  }, []);
 
   return (
     <>
@@ -389,7 +401,7 @@ export default function VerticalLinearStepper() {
                   </div>
                   <br />
                   {existingDesign ? (
-                    <DrawerDesign imageSetter={setImage} />
+                    <DrawerDesign imageSetter={setImage} seller={seller}/>
                   ) : (
                     <div class="container text-center">
                       <div style={{ padding: "0px" }}>

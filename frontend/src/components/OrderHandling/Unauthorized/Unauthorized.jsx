@@ -18,8 +18,8 @@ export default function Unauthorized() {
           </p>
           <p className="outputsmt">
             Please try to{" "}
-            <a className="asmt" href="javascript:history.back()">
-              go back
+            <a className="asmt" href="/login">
+              System Login
             </a>{" "}
             or{" "}
             <a className="asmt" href="/">

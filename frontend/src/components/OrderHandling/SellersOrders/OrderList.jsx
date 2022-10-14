@@ -11,18 +11,23 @@ import QRread from "./QRread";
 import PdfGen from "../PDFgen/PdfGen";
 
 export default function OrderList(props) {
-  const [seller, setSeller] = useState("john");
+  const seller = localStorage.getItem("FirstName");
+  // const [seller, setSeller] = useState("");
   const [orders, setOrders] = useState([]);
   const [openBkdrop, setOpenBkdrop] = useState(true);
 
   useEffect(() => {
-    axios
-      .get(BACKEND_DOMAIN + "/api/orders/getCakeforShop/" + seller)
-      .then((res) => {
-        setOrders(res.data);
-      })
-      .then(() => setOpenBkdrop(false))
-      .catch((err) => console.log(err));
+    if (seller === "" || seller === null) {
+      window.location = "/unauthorized";
+    } else {
+      axios
+        .get(BACKEND_DOMAIN + "/api/orders/getCakeforShop/" + seller)
+        .then((res) => {
+          setOrders(res.data);
+        })
+        .then(() => setOpenBkdrop(false))
+        .catch((err) => console.log(err));
+    }
   }, []);
 
   return (
