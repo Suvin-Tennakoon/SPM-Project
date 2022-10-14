@@ -57,128 +57,79 @@ export default function PaymentInv(props) {
           <CardContent style={{}}>
             <PdfGen paymentdet={paymentdet} />
             <Typography variant="body2" color="text.secondary">
-              <span>
-                Order No. : <br />#{paymentdet?._id}
+              <span style={{ color: "white" }}>
+                Order No. : <br />
+                <p style={{ color: "#AEB6BF" }}>#{paymentdet?._id}</p>
               </span>
-              <br />
-              <br />
-              <span>
+              <span style={{ color: "white" }}>
                 Customer Name : <br />
-                {paymentdet?.customer}
+                <p style={{ color: "#AEB6BF" }}>{paymentdet?.customer}</p>
               </span>
-
-              <br />
-              <br />
-              <span>
+              <span style={{ color: "white" }}>
                 Cake Type : <br />
-                {paymentdet?.cakeType}
+                <p style={{ color: "#AEB6BF" }}>{paymentdet?.cakeType}</p>
               </span>
-
-              <br />
-              <br />
-              <span>
+              <span style={{ color: "white" }}>
                 Seller Name : <br />
-                {paymentdet?.seller}
+                <p style={{ color: "#AEB6BF" }}>{paymentdet?.seller}</p>
               </span>
-              <br />
-              <br />
-              <span>
+              {/* <span style={{ color: "white" }}>
                 Payment Type : <br />
-                {paymentdet?.paymentType}
-              </span>
-              <br />
-              <br />
-              <span>
+                <p style={{ color: "#AEB6BF" }}>{paymentdet?.paymentType}</p>
+              </span> */}
+              {/* <span style={{ color: "white" }}>
                 Amount : <br />
-                {paymentdet?.amount}LKR
-              </span>
-              <br />
-              <br />
-              <span>
+                <p style={{ color: "#AEB6BF" }}>{paymentdet?.amount} LKR</p>
+              </span> */}
+              {/* <span style={{ color: "white" }}>
                 Discount : <br />
-                {discount}
-              </span>
-              <br />
-              <br />
-              <span>
-                Total : <br />
-                {finalvalue}
+                <p style={{ color: "#AEB6BF" }}>{discount} %</p>
+              </span> */}
+              <span style={{ color: "white" }}>
+                {/* Total : <br /> */}
+                {/* <p style={{ color: "#AEB6BF" }}>{finalvalue} LKR</p> */}
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      
+                      <th scope="col" colspan="2" style={{ color: "white" }}>Payment Type</th>
+                      
+                      <th scope="col" style={{ color: "white" }}>Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      
+                      <td colspan="2">{paymentdet?.paymentType}</td>
+                      
+                      <td></td>
+                    </tr>
+                    <tr>
+                      
+                      <td>    </td>
+                      <td style={{ color: "white" }}>Subtotal</td>
+                      <td>{paymentdet?.amount} LKR</td>
+                    </tr>
+                    <tr>
+                      
+                      <td >   </td>
+                      <td style={{ color: "white" }}>Discount</td>
+                      <td>{discount} %</td>
+                    </tr>
+                    <tr>
+                      
+                      <td >   </td>
+                      <td style={{ color: "white" }}>Total</td>
+                      <td>{finalvalue} LKR</td>
+                    </tr>
+                  </tbody>
+                </table>
                 <PayherePage ptype={paymentdet.paymentType} />
               </span>
             </Typography>
           </CardContent>
         </CardActionArea>
       </Card>
-
-      {/* <div
-        className="container text-dark"
-        style={{ backgroundColor: "#d9d9d9", padding: "20px", width: "30%" }}
-      >
-        <article
-          class="card"
-          style={{
-            flex: "0 1 24%",
-            marginBottom: "20px",
-            backgroundColor: "#d9d9d9",
-          }}
-        >
-          <div className="card-header">
-            <h3>
-              Payment Invoice <b></b>
-            </h3>
-          </div>
-          <div className="card-body">
-            <div className="form-row">
-              <div>
-                <span>Order No. : #{paymentdet?._id}</span>
-                <br />
-
-                <span>Cake Type : {paymentdet?.cakeType}</span>
-                <br />
-                <br />
-                <span>Seller Name : {paymentdet?.seller}</span>
-                <br />
-                <span>Customer Name : {paymentdet?.customer}</span>
-                <br />
-                <br />
-                <span>Payment Type : {paymentdet?.paymentType}</span>
-                <br />
-                <span>Amount : {paymentdet?.amount}LKR</span>
-                <br />
-                <span>Discount : 10%</span>
-                <br />
-                <span>Total : 2250.00</span>
-                <br />
-              </div>
-            </div>
-          </div>
-          <div
-            style={{
-              float: "right",
-              marginTop: "10px",
-              marginBottom: "20px",
-              paddingLeft: "70px",
-            }}
-          >
-            <div style={{ float: "center" }}>
-              <a
-                href=""
-                className="btn btn-primary ml-4"
-                style={{ backgroundColor: "#fe0035" }}
-              >
-                Export as PDF
-              </a>
-              <br></br>
-              <br></br>
-
-              <PayherePage ptype={paymentdet.paymentType} />
-            </div> */}
-      {/* <a href="/CardPay" className="btn btn-warning ml-2" style={{ backgroundColor: "#fe0035" }}>
-              Proceed
-            </a> */}
-      {/* </div> */}
-      {/* </article> */}
-      {/*</div>*/}
     </div>
   );
 }

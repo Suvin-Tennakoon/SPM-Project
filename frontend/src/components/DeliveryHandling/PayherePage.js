@@ -11,14 +11,14 @@ const PayherePage = (props) => {
       <div id="payhere-modal"></div>
       {props.ptype === "Credit/Debit Card" ? (
         <button
-          className="btn btn-primary btn-sm ml-4"
+          className="btn btn-primary btn-sm"
           onClick={() => setShowPayhere(true)}
         >
           Pay Now
         </button>
       ) : (
         <button
-          className="btn btn-primary btn-sm ml-4"
+          className="btn btn-primary btn-sm"
           onClick={() => (window.location = "/")}
         >
           Home

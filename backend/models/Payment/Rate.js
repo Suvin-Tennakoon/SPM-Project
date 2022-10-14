@@ -2,23 +2,23 @@ const mongoose = require("mongoose");
 
 const rate = new mongoose.Schema({
   rate1: {
-    type: String,
+    type: Number,
   },
 
   rate2: {
-    type: String,
+    type: Number,
   },
 
   rate3: {
-    type: String,
+    type: Number,
   },
 
   rate4: {
-    type: String,
+    type: Number,
   },
 
   rate5: {
-    type: String,
+    type: Number,
   },
 });
 
