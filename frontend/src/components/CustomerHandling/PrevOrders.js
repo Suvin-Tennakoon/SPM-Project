@@ -28,7 +28,7 @@ export default function PrevOrders() {
             <h4>{val.cakeType}</h4>
             <img src={val.cakeImage} />
             <a className='btn btn-primary' href={`/givereview/${val._id}`}>Add Review</a>
-            <a className='btn btn-secondary' href={`/givereview/${val._id}`}>Order Progress</a>
+            <a className='btn btn-secondary' href={`/orderProgress/${val._id}`}>Order Progress</a>
           </article>
         ))}
       </section>
