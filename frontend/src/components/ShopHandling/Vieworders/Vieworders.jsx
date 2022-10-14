@@ -1,7 +1,7 @@
-
 import React, { Component, useState } from "react";
 import axios from "axios";
 import { Link, useParams, useHistory } from "react-router-dom";
+import generatePDFalldesign from "../Report/Reportgenerator";
 import { withRouter } from "react-router";
 import "./Vieworder.css";
 
@@ -10,7 +10,7 @@ class Vieworders extends React.Component {
     super(props);
 
     this.state = {
-      vieworders:{},
+      vieworders: {},
     };
   }
 
@@ -19,7 +19,7 @@ class Vieworders extends React.Component {
     axios
       .get("http://localhost:3001/api/orders/getOrderData/" + id)
       .then((res) => {
-        this.setState({vieworders:res.data});
+        this.setState({ vieworders: res.data });
       })
       .catch((err) => {
         console.log(err);
@@ -28,36 +28,36 @@ class Vieworders extends React.Component {
   render() {
     return (
       <div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
 
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">
-              <b>Design Name</b>
-            </th>
-            <th scope="col">
-              <b>Customer's Name</b>
-            </th>
-            <th scope="col">
-              <b>Flavour</b>
-            </th>
-            <th scope="col">
-              <b>Size</b>
-            </th>
-            <th scope="col">
-              <b>Quantity</b>
-            </th>
-            <th scope="col">
-              <b>    </b>
-            </th>
-          </tr>
-        </thead>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">
+                <b>Design Name</b>
+              </th>
+              <th scope="col">
+                <b>Customer's Name</b>
+              </th>
+              <th scope="col">
+                <b>Flavour</b>
+              </th>
+              <th scope="col">
+                <b>Size</b>
+              </th>
+              <th scope="col">
+                <b>Quantity</b>
+              </th>
+              <th scope="col">
+                <b> </b>
+              </th>
+            </tr>
+          </thead>
           <tbody>
             <tr>
               <th scope="row">{this.state.vieworders.cakeType}</th>
@@ -67,9 +67,18 @@ class Vieworders extends React.Component {
               <td>{data.quantity}</td> */}
             </tr>
           </tbody>
-       
-      </table>
-    </div>
+        </table>
+        <button
+          type="button"
+          className="btn btn-primary"
+          style={{ backgroundColor: "#000000", marginLeft: "1120px" }}
+          onClick={() => {
+            generatePDFalldesign(this.state.vieworders);
+          }}
+        >
+          Generate Report
+        </button>
+      </div>
     );
   }
 }
