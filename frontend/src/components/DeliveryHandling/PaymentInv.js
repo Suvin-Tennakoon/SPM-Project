@@ -42,7 +42,7 @@ export default function PaymentInv(props) {
   }, []);
 
   return (
-    <div style={{ marginTop: "120px", paddingLeft: "430px" }}>
+    <div style={{ marginTop: "120px", paddingLeft: "500px" }}>
       <Card
         variant="outlined"
         sx={{ maxWidth: 500, backgroundColor: "#343a40" }}
@@ -54,7 +54,7 @@ export default function PaymentInv(props) {
             image={paymentdet?.cakeImage}
             alt="Your Cake"
           />
-          <CardContent style={{}}>
+          <CardContent style={{color:"white"}}>
             <PdfGen paymentdet={paymentdet} />
             <Typography variant="body2" color="text.secondary">
               <span style={{ color: "white" }}>

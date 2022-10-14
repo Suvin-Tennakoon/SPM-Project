@@ -41,6 +41,7 @@ export default function Addcouponcode() {
         console.log(res.data);
         setCouponDetails(res.data);
         console.log(couponDetails);
+        window.location = "/viewcoupons/";
       })
       .catch((err) => {
         alert(err);
@@ -57,7 +58,7 @@ export default function Addcouponcode() {
     <div style={{ marginTop: "120px" }}>
       <div
         className="container text-light"
-        style={{ backgroundColor: "#343a40", padding: "20px", width: "50%" }}
+        style={{ backgroundColor: "#343a40", padding: "20px", width: "20%" }}
       >
         <article
           class="card"
@@ -75,7 +76,7 @@ export default function Addcouponcode() {
           <div className="card-body"></div>
           <div style={{ float: "right", marginBottom: "20px" }}>
             <form onSubmit={formik.handleSubmit}>
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-9">
                 <input
                   type="text"
                   class="form-control"
@@ -90,7 +91,7 @@ export default function Addcouponcode() {
                   <div style={{ color: "red" }}>{formik.errors.couponCode}</div>
                 ) : null}
               </div>
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-9">
                 <input
                   type="date"
                   class="form-control"
@@ -104,7 +105,7 @@ export default function Addcouponcode() {
                   <div style={{ color: "red" }}>{formik.errors.expireDate}</div>
                 ) : null}
               </div>
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-9">
                 <select
                   class="form-control"
                   id="discount"
@@ -123,7 +124,7 @@ export default function Addcouponcode() {
                   <div style={{ color: "red" }}>{formik.errors.discount}</div>
                 ) : null}
               </div>
-              <button className="btn btn-primary ml-4" type="submit">
+              <button className="btn btn-primary ml-3" type="submit">
                 save
               </button>
             </form>

@@ -43,30 +43,32 @@ export default function PaymentDet() {
           alt="Your Cake Design"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div" style={{color:"white"}}>
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="div"
+            style={{ color: "white" }}
+          >
             Review Order
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            <Typography variant="body1" gutterBottom style={{color:"white"}}>
+            <Typography variant="body1" gutterBottom style={{ color: "white" }}>
               Order No. :{" "}
             </Typography>
-            <p style={{color:"#AEB6BF"}}>#{paymentdet?._id}</p>
-          
-            
-            <Typography variant="body1" gutterBottom style={{color:"white"}}>
+            <p style={{ color: "#AEB6BF" }}>#{paymentdet?._id}</p>
+
+            <Typography variant="body1" gutterBottom style={{ color: "white" }}>
               Cake Type :{" "}
             </Typography>
-            <p style={{color:"#AEB6BF"}}>{paymentdet?.cakeType}</p>
-            
-            
-            <Typography variant="body1" gutterBottom style={{color:"white"}}>
-              Amount:{" "}
+            <p style={{ color: "#AEB6BF" }}>{paymentdet?.cakeType}</p>
+
+            <Typography variant="body1" gutterBottom style={{ color: "white" }}>
+              Amount :{" "}
             </Typography>
-            <p style={{color:"#AEB6BF"}}>{paymentdet?.amount}LKR</p>
-           
-            
-            <Typography variant="body1" gutterBottom style={{color:"white"}}>
-              Coupon Code:
+            <p style={{ color: "#AEB6BF" }}>{paymentdet?.amount}LKR</p>
+
+            <Typography variant="body1" gutterBottom style={{ color: "white" }}>
+              Coupon Code :<br></br>
               <TextField
                 label=""
                 id="outlined-size-small"
@@ -77,19 +79,19 @@ export default function PaymentDet() {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">
-            <a
+          {/* <Button size="small"> */}
+            {/* <a
               href="#"
               className="btn btn-primary ml-1"
               style={{ backgroundColor: "#fe0035" }}
             >
               Clear
-            </a>
-          </Button>
+            </a> */}
+          {/* </Button> */}
           <Button size="small">
             <a
-              className="btn btn-primary ml-2"
-              style={{ backgroundColor: "#fe0035" }}
+              className="btn btn-primary"
+              style={{ backgroundColor: "#fe0035", color:"white", marginTop:"-20px" }}
               onClick={submitCouponCode}
             >
               Proceed
