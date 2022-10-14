@@ -3,33 +3,28 @@ import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-// export default function Addcouponcode() {
-  const AddCouponCode = () => {
-
+export default function Addcouponcode() {
   const [couponDetails, setCouponDetails] = useState([]);
-  // const [couponCode, setCouponCode] = useState("");
-  // const [couponId, setCouponId] = useState("");
-  // const [expireDate, setExpireDate] = useState("");
-  // const [discount, setDiscount] = useState("");
-  // const [status, setStatus] = useState("");
+  const [value, setValue] = useState({});
+
+  
+  const [couponCode, setCouponCode] = useState("");
+  const [discount, setDiscount] = useState("");
+  const [expireDate, setExpireDate] = useState("");
+  
 
   const initialValues = {
     enableReinitialize: true,
     validateOnMount: true,
+    couponId: couponDetails?.result?._id,
     couponCode: "",
-    couponId: "",
-    expireDate: "",
     discount: "",
-    status: "",
+    expireDate: "",
   };
 
-//   const rand = (min, max) => {
-//     return Math.floor(Math.random() * max - min + 1) + min;
-// }
-
-// const handleIds = () => {
-//     setCouponId(rand(999, 99999))
-// }
+  const handleChange = (newValue) => {
+    setValue(newValue);
+  };
 
   const validationSchema = Yup.object({
     couponCode: Yup.string()
@@ -38,15 +33,18 @@ import * as Yup from "yup";
       .max(10, "Too long"),
     expireDate: Yup.string().required("*Required!"),
     discount: Yup.string().required("*Required!"),
-    status: Yup.string().required("*Required!"),
-    couponId: Yup.string().required("*Required!"),
+    
   });
 
   const onSubmit = (values) => {
     axios
       .post("http://localhost:3001/api/payments/coupon", values)
-      .then(() => {
+      .then((res) => {
+        
         alert("New coupon Added.");
+        console.log(res.data);
+        setCouponDetails(res.data);
+        console.log(couponDetails)
       })
       .catch((err) => {
         alert(err);
@@ -62,119 +60,70 @@ import * as Yup from "yup";
   return (
     <div style={{ marginTop: "120px" }}>
       <div
-        className="container text-dark"
-        style={{ backgroundColor: "#d9d9d9", padding: "20px", width: "50%" }}
+        className="container text-light"
+        style={{ backgroundColor: "#343a40", padding: "20px", width: "50%" }}
       >
         <article
           class="card"
           style={{
             flex: "0 1 24%",
             marginBottom: "20px",
-            backgroundColor: "#d9d9d9",
+            backgroundColor: "#343a40",
           }}
         >
           <div className="card-header">
             <h3>
-              Add Coupon Codes<b></b>
+              New Coupon<b></b>
             </h3>
           </div>
-          <div className="card-body">
-            <form onSubmit={formik.handleSubmit}>
-              <div className="form-row">
-                <div className="form-group col-md-6">
-                  <label class="text-dark">Coupon ID</label>
-                  <br />
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="couponId"
-                    id="couponId"
-                    placeholder="Enter Coupon ID"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.couponId}
-                  />
-                  {formik.touched.couponId && formik.errors.couponId ? (
-                    <div style={{ color: "red" }}>
-                      {formik.errors.couponId}
-                    </div>
-                  ) : null}
-                </div>
-                <div className="form-group col-md-6">
-                  <label class="text-dark">Coupon Code</label>
-                  <br />
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="couponCode"
-                    id="couponCode"
-                    placeholder="Enter Coupon Code"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.couponCode}
-                  />
-                  {formik.touched.couponCode && formik.errors.couponCode ? (
-                    <div style={{ color: "red" }}>
-                      {formik.errors.couponCode}
-                    </div>
-                  ) : null}
-                </div>
-                <div className="form-group col-md-6">
-                  <label class="text-dark">Expiry Date</label>
-                  <br />
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="expireDate"
-                    id="expireDate"
-                    placeholder="Enter Expiry Date"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.expireDate}
-                  />
-                  {formik.touched.expireDate && formik.errors.expireDate ? (
-                    <div style={{ color: "red" }}>
-                      {formik.errors.expireDate}
-                    </div>
-                  ) : null}
-                </div>
-                <div className="form-group col-md-4">
-                  <label class="text-dark">Discount Amount</label>
-                  <br />
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="discount"
-                    id="discount"
-                    placeholder="Enter Discount %"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.discount}
-                  />
-                  {formik.touched.discount && formik.errors.discount ? (
-                    <div style={{ color: "red" }}>
-                      {formik.errors.discount}
-                    </div>
-                  ) : null}
-                </div>
-              </div>
+          <div className="card-body"></div>
+          <div style={{ float: "right", marginBottom: "20px" }}>
+          <form onSubmit={formik.handleSubmit}>
+            <div class="form-group col-md-4">
+              <input
+                type="text"
+                class="form-control"
+                id="couponCode"
+                placeholder="Coupon Code"
+                name="couponCode"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.couponCode}
+              ></input>
+              {formik.touched.couponCode && formik.errors.couponCode ? <div style={{ color: "red" }}>{formik.errors.couponCode}</div> : null}
+            </div>
+            <div class="form-group col-md-4">
+              <input
+                type="date"
+                class="form-control"
+                id="expireDate"
+                placeholder="Date"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.expireDate}
+              ></input>
+                 {formik.touched.expireDate && formik.errors.expireDate ? <div style={{ color: "red" }}>{formik.errors.expireDate}</div> : null}
+            </div>
+            <div class="form-group col-md-4">
+              <select class="form-control" id="discount" onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.discount}>
+                <option>Discount(%)</option>
+                <option>10</option>
+                <option>15</option>
+                <option>20</option>
+                <option>25</option>
+                <option>30</option>
+              </select>
+              {formik.touched.discount && formik.errors.discount ? <div style={{ color: "red" }}>{formik.errors.discount}</div> : null}
+            </div>
+            <button className="btn btn-primary ml-4" type="submit">
+              save
+            </button>
             </form>
-          </div>
-          <div
-            style={{ float: "right", marginTop: "40px", marginBottom: "20px" }}
-          >
-            <a
-              href=""
-              className="btn btn-primary ml-4"
-              type="submit"
-              style={{ backgroundColor: "#fe0035" }}
-            >
-              Add Coupon Code
-            </a>
           </div>
         </article>
       </div>
     </div>
   );
 }
-export default AddCouponCode;

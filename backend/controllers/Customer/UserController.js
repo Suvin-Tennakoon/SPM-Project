@@ -107,4 +107,21 @@ const getUserByEmail = async (req, res) => {
       }
 }
 
-module.exports = { getUsers, getUserById, updateUser, getUserByEmail, updateUserPw }
+const getShopOwnersNames = async (req, res) => {
+    
+    //const accType = req.query.accountType
+    const query = {"accountType":'Shop Owner'}
+
+    try {
+
+        const shopOwners = await User.find(query).select("firstName")
+        res.status(200).json(shopOwners);
+    }
+    catch (err) {
+
+        res.status(400).json({ message: err.message });
+    }
+    
+}
+
+module.exports = { getUsers, getUserById, updateUser, getUserByEmail, updateUserPw, getShopOwnersNames }

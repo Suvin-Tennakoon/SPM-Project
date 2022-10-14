@@ -44,7 +44,7 @@ export default function Login() {
                         // setIsLoading(false);
                     }
                     else if (data?.data?.user?.accountType === "Shop Owner") {
-                        navigate(`/userprof`);
+                        navigate(`/displaydesign`);
                         // setIsLoading(false);
                     }
                     else if (data?.data?.user?.accountType === "Customer") {

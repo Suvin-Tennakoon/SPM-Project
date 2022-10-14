@@ -1,0 +1,24 @@
+#phninp {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.8rem + 2px);
+    padding: 0.4rem 0.78rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #dee2e6;
+    background-color: #495057;
+    background-clip: padding-box;
+    border: 1px solid #343a40;
+    border-radius: 0.2rem;
+    overflow: visible;
+}
+
+#phninp::placeholder {
+    color:#dee2e6
+}
+
+#phninp:focus {
+    border: 1px solid #ff214f;
+    outline:none
+}

@@ -15,6 +15,7 @@ const addcouponcode = (req, res, next) => {
         expireDate,
         status
     });
+    
   
     newCouponCode
       .save()
@@ -92,4 +93,4 @@ const deleteCouponCode = (req, res, next) => {
   };
 
 
-module.exports = { addcouponcode, getCouponCode, getCouponCodeById, updateCouponCode}
+module.exports = { addcouponcode, getCouponCode, getCouponCodeById, updateCouponCode, deleteCouponCode}
