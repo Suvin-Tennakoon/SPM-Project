@@ -17,9 +17,9 @@ function SimpleDialog(props) {
 
   useEffect(() => {
     axios
-      .get(BACKEND_DOMAIN + "/api/customers/getShopOwnersNames")
+      .get(BACKEND_DOMAIN + "/api/customers/shop")
       .then((res) => {
-        console.log(res.data);
+        setShopOwners(res.data);
       })
       .catch((err) => {
         alert(err);
@@ -50,15 +50,15 @@ function SimpleDialog(props) {
           {shopowners.map((owner) => (
             <ListItem
               button
-              onClick={() => handleListItemClick(owner)}
-              key={owner}
+              onClick={() => handleListItemClick(owner.firstName)}
+              key={owner._id}
             >
               <ListItemAvatar>
                 <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
                   <StorefrontIcon />
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary={owner} />
+              <ListItemText primary={owner.firstName} />
             </ListItem>
           ))}
         </List>
