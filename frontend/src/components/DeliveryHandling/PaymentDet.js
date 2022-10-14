@@ -13,6 +13,7 @@ import { TextField } from "@mui/material";
 export default function PaymentDet() {
   const [payments, setPaymentDetails] = useState([]);
   const [paymentdet, setPaymentDet] = useState("");
+  const [couponCode, setCouponCode] = useState("");
   const { id } = useParams();
   useEffect(() => {
     axios
@@ -25,9 +26,16 @@ export default function PaymentDet() {
       });
   }, []);
 
+  const submitCouponCode = () => {
+    window.location = "/paymentinv/" + id + "/" + couponCode;
+  };
+
   return (
     <div style={{ marginTop: "120px", paddingLeft: "430px" }}>
-      <Card variant="outlined" sx={{ maxWidth: 500,backgroundColor:"#343a40" }}>
+      <Card
+        variant="outlined"
+        sx={{ maxWidth: 500, backgroundColor: "#343a40" }}
+      >
         <CardMedia
           component="img"
           height="170"
@@ -62,8 +70,8 @@ export default function PaymentDet() {
               <TextField
                 label=""
                 id="outlined-size-small"
-                defaultValue=""
                 size="small"
+                onChange={(e) => setCouponCode(e.target.value)}
               />
             </Typography>
           </Typography>
@@ -80,9 +88,9 @@ export default function PaymentDet() {
           </Button>
           <Button size="small">
             <a
-              href={"/PaymentInv/" + id}
               className="btn btn-primary ml-2"
               style={{ backgroundColor: "#fe0035" }}
+              onClick={submitCouponCode}
             >
               Proceed
             </a>
