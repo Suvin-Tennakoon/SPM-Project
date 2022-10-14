@@ -70,7 +70,7 @@ class ViewCoupons extends Component {
           </form>
           <a
             className="btn btn-outline-primary btn-sm"
-            style={{ marginLeft: "900px" }}
+            style={{ marginLeft: "945px" }}
             href="/AddCouponCode"
           >
             New Coupon
@@ -97,17 +97,17 @@ class ViewCoupons extends Component {
                 <td>{coupondet.discount}</td>
                 <td>{coupondet.expireDate}</td>
 
-                <td>
-                  <a className="btn btn-warning" href={``}>
+               <td>
+                  {/* <a className="btn btn-warning" href={``}>
                     <i className="fas fa-edit"></i>&nbsp; Edit
-                  </a>
+                  </a> */}
                   &nbsp;
                   <a
                     className="btn btn-danger"
                     href="#"
                     onClick={() => this.onDelete(coupondet._id)}
                   >
-                    <i className="far fa-trash-alt"></i>&nbsp; Delete
+                    <i className="far fa-trash-alt"></i>&nbsp;Delete
                   </a>
                 </td>
               </tr>
