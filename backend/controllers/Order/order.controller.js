@@ -212,7 +212,6 @@ const setAcceptedOrder = (req, res) => {
           decision: 1,
           amount: req.body.amount,
           modPeriod: req.body.modPeriod,
-          advAmount: req.body.advAmount,
         },
       }
     )
