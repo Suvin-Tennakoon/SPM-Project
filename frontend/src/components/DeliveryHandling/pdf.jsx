@@ -82,6 +82,61 @@ const Pdf = ({ paymentdet }) => (
       </View>
       <View>
         <Image src={paymentdet.cakeImage}></Image>
+
+        {/* <Typography variant="body2" color="text.secondary">
+              <span style={{ color: "white" }}>
+                Order No. : <br />
+                <p style={{ color: "#AEB6BF" }}>#{paymentdet._id}</p>
+              </span>
+              <span style={{ color: "white" }}>
+                Customer Name : <br />
+                <p style={{ color: "#AEB6BF" }}>{paymentdet.customer}</p>
+              </span>
+              <span style={{ color: "white" }}>
+                Cake Type : <br />
+                <p style={{ color: "#AEB6BF" }}>{paymentdet.cakeType}</p>
+              </span>
+              <span style={{ color: "white" }}>
+                Seller Name : <br />
+                <p style={{ color: "#AEB6BF" }}>{paymentdet.seller}</p>
+              </span>
+              <span style={{ color: "white" }}>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col" colspan="2" style={{ color: "white" }}>
+                        Payment Type
+                      </th>
+                      <th scope="col" style={{ color: "white" }}>
+                        Amount
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td colspan="2">{paymentdet.paymentType}</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td> </td>
+                      <td style={{ color: "white" }}>Subtotal</td>
+                      <td>{paymentdet.amount} LKR</td>
+                    </tr>
+                    <tr>
+                      <td> </td>
+                      <td style={{ color: "white" }}>Discount</td>
+                      <td>%</td>
+                    </tr>
+                    <tr>
+                      <td> </td>
+                      <td style={{ color: "white" }}>Total</td>
+                      <td> LKR</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </span>
+            </Typography> */}
+
       </View>
       <Text>Order No.</Text>
       <Text>{paymentdet._id}</Text>
