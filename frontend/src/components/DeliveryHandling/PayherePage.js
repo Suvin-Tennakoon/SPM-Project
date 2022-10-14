@@ -20,9 +20,8 @@ const PayherePage = (props) => {
         <button
           className="btn btn-primary btn-sm ml-4"
           onClick={() => (window.location = "/")}
-          
         >
-          Home 
+          Home
         </button>
       )}
 

@@ -68,6 +68,13 @@ class ViewCoupons extends Component {
               onChange={this.handleSearchArea}
             />
           </form>
+          <a
+            className="btn btn-outline-primary btn-sm"
+            style={{ marginLeft: "900px" }}
+            href="/AddCouponCode"
+          >
+            New Coupon
+          </a>
         </div>
 
         <table className="table">

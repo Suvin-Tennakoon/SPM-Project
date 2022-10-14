@@ -1,6 +1,6 @@
-const Payment = require('../../models/Payment/Payment');
+const Payment = require("../../models/Payment/Payment");
 // const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 
 // var jwtSecret = 'mysecrettoken';
 
@@ -28,89 +28,87 @@ const bcrypt = require('bcrypt');
 // }
 
 const addPayment = (req, res, next) => {
-    const userId = req.body.userId;
-    const paymentId = req.body.paymentId;
-    const orderNo = req.body.orderNo;
-    const orderType = req.body.orderType;
-    const date = req.body.date;
-    const time = req.body.time;
-    const amount = req.body.amount;
-    const couponCode = req.body.couponCode;
-    // const PType = req.body.PType;
-  
-    const newPayment = new Payment({
-        userId,
-        paymentId,
-        orderNo,
-        orderType,
-        date,
-        time,
-        amount,
-        couponCode
-    });
-  
-    newPayment
-      .save()
-      .then(() => {
-        res.json("Payment Added");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  const userId = req.body.userId;
+  const paymentId = req.body.paymentId;
+  const orderNo = req.body.orderNo;
+  const orderType = req.body.orderType;
+  const date = req.body.date;
+  const time = req.body.time;
+  const amount = req.body.amount;
+  const couponCode = req.body.couponCode;
+  // const PType = req.body.PType;
 
+  const newPayment = new Payment({
+    userId,
+    paymentId,
+    orderNo,
+    orderType,
+    date,
+    time,
+    amount,
+    couponCode,
+  });
+
+  newPayment
+    .save()
+    .then(() => {
+      res.json("Payment Added");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 const getPayment = (req, res, next) => {
-    Payment.find()
-      .then((Payment) => {
-        res.json(Payment);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
+  Payment.find()
+    .then((Payment) => {
+      res.json(Payment);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 const getPaymentById = async (req, res) => {
+  const id = req.params.id;
 
-    const id = req.params.id;
-
-    try {
-
-        const Payment = await Payment.findById(id);
-        res.status(200).json(Payment);
-    }
-    catch (err) {
-
-        res.status(400).json({ message: err.message });
-    }
-}
+  try {
+    const Payment = await Payment.findById(id);
+    res.status(200).json(Payment);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
 
 const updatePayment = async (req, res) => {
+  const { id } = req.params;
+  const {
+    userId,
+    paymentId,
+    orderNo,
+    orderType,
+    date,
+    time,
+    amount,
+    couponCode,
+  } = req.body;
 
-    const { id } = req.params;
-    const { userId, paymentId, orderNo, orderType, date, time, amount, couponCode } = req.body;
+  try {
+    const updatePayment = {
+      userId,
+      paymentId,
+      orderNo,
+      orderType,
+      date,
+      time,
+      amount,
+      couponCode,
+    };
+    await Payment.findByIdAndUpdate(id, updatePayment, { new: true });
+    res.json(updatePayment);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
 
-    try {
-
-        const updatePayment = ({
-            userId,
-            paymentId,
-            orderNo,
-            orderType,
-            date,
-            time,
-            amount,
-            couponCode
-        });
-        await Payment.findByIdAndUpdate(id, updatePayment, { new: true });
-        res.json(updatePayment);
-    }
-    catch (err) {
-
-        res.status(400).json({ message: err.message });
-    }
-}
-
-
-module.exports = { addPayment, getPayment, getPaymentById, updatePayment}
+module.exports = { addPayment, getPayment, getPaymentById, updatePayment };

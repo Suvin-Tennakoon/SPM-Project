@@ -7,11 +7,9 @@ const Record = (props) => (
     <td>{props.couponcodes.name}</td>
     <td>{props.couponcodes.position}</td>
     <td>{props.couponcodes.level}</td>
-    <td>
-    </td>
+    <td></td>
   </tr>
 );
-
 
 export default function RecordList() {
   const [couponcodes, setRecords] = useState([]);
@@ -19,7 +17,9 @@ export default function RecordList() {
   // This method fetches the payments from the database.
   useEffect(() => {
     async function getRecords() {
-      const response = await fetch(`http://localhost:3001/api/payments/get/coupon`);
+      const response = await fetch(
+        `http://localhost:3001/api/payments/get/coupon`
+      );
 
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
@@ -52,38 +52,42 @@ export default function RecordList() {
     return couponcodes.map((couponcodes) => {
       return (
         <div>
-        <h4 style={{marginTop: "130px", textAlign:"center"}}>All Coupon Details</h4>
-        <div className="container text-dark" style={{marginTop: "-60px"}}>
-          <br/><br/>
-          <h4>All Coupon Details</h4>
-          <Record
-            couponcodes={couponcodes}
-            deleteRecord={() => deleteRecord(couponcodes._id)}
-            key={couponcodes._id}
-          />
-<h4>All Coupon Details</h4>
-          <Table striped bordered hover variant="dark">
-            <thead>
-              <tr>
-                <th>Coupon ID</th>
-                <th>Coupon Code</th>
-                <th>Expiry Date</th>
-                <th>Discount</th>
-                <th>Status</th>
-              </tr>
-            </thead>
+          <h4 style={{ marginTop: "130px", textAlign: "center" }}>
+            All Coupon Details
+          </h4>
+          <div className="container text-dark" style={{ marginTop: "-60px" }}>
+            <br />
+            <br />
+            <h4>All Coupon Details</h4>
+            <Record
+              couponcodes={couponcodes}
+              deleteRecord={() => deleteRecord(couponcodes._id)}
+              key={couponcodes._id}
+            />
+            <h4>All Coupon Details</h4>
+            <Table striped bordered hover variant="dark">
+              <thead>
+                <tr>
+                  <th>Coupon ID</th>
+                  <th>Coupon Code</th>
+                  <th>Expiry Date</th>
+                  <th>Discount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
 
-            <tbody>
-              <tr>
-                <td>{couponcodes.couponId}</td>
-                <td>{couponcodes.couponCode}</td>
-                <td>{couponcodes.discount}</td>
-                <td>{couponcodes.expireDate}</td>
-                <td>{couponcodes.status}</td>
-              </tr>
-            </tbody>
-          </Table>
-        </div></div>
+              <tbody>
+                <tr>
+                  <td>{couponcodes.couponId}</td>
+                  <td>{couponcodes.couponCode}</td>
+                  <td>{couponcodes.discount}</td>
+                  <td>{couponcodes.expireDate}</td>
+                  <td>{couponcodes.status}</td>
+                </tr>
+              </tbody>
+            </Table>
+          </div>
+        </div>
       );
     });
   }
@@ -96,4 +100,3 @@ export default function RecordList() {
     </div>
   );
 }
-
