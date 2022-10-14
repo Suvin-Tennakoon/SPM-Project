@@ -12,7 +12,7 @@ export default function SUVIN_ROUTES() {
   return (
     <>
       <Route path="/" element={<Home />}></Route>
-      <Route path="/placeorder" element={<PlaceOrder />}></Route>
+      <Route path="/placeorder/:seller" element={<PlaceOrder />}></Route>
       <Route path="/sellerAllOrders" element={<OrderList />}></Route>
       <Route path="/components" element={<Compo />}></Route>
       <Route path="/orderRequest/:id" element={<CakeOrderShp />}></Route>

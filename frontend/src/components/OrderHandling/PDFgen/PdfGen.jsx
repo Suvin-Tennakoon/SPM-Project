@@ -255,7 +255,7 @@ const Pdf = ({ orders }) => (
 );
 
 function PdfGen() {
-  const seller = "john";
+  const seller = localStorage.getItem("FirstName");
   const [orders, setOrders] = useState([]);
   useEffect(() => {
     axios

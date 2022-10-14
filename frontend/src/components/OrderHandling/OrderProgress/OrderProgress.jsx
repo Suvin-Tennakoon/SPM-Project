@@ -187,6 +187,7 @@ export default function OrderProgress() {
   };
 
   const { id } = useParams();
+  const user = localStorage.getItem("FirstName");
 
   const [orderProgress, setOrderProgress] = useState("");
   const [activeStep, setActiveStep] = useState(0);
@@ -194,43 +195,49 @@ export default function OrderProgress() {
   const [description, setDescription] = useState("");
 
   useEffect(() => {
-    axios
-      .get(BACKEND_DOMAIN + "/api/orders/getOrderProgress/" + id)
-      .then((res) => {
-        setOrderProgress(res.data);
+    if (user === "" || user === null) {
+      window.location = "/unauthorized";
+    } else {
+      axios
+        .get(BACKEND_DOMAIN + "/api/orders/getOrderProgress/" + id)
+        .then((res) => {
+          setOrderProgress(res.data);
 
-        if (res.data) {
-          switch (res.data.decision) {
-            case 0:
-              setActiveStep(0);
-              setDescription(
-                "Your order is in review. Seller will update the state of the order. Check the page for latest progress. Meanwhile, browse new cake designs in out store"
-              );
-              break;
-            case -1:
-              setActiveStep(2);
-              setCurrentTitle("Processing of your order has been failed");
-              setDescription(
-                "Seller has rejected your order request. You can place a new order by doing the necessary modifications"
-              );
-              break;
-            case 1:
-              setActiveStep(1);
-              setDescription(styleDescription(res.data.modPeriod));
-              setCurrentTitle(
-                "Your order has been accepted and in the processing"
-              );
-              break;
-            case 5:
-              setActiveStep(2);
-              setDescription(
-                "Pleasure doing business with you. Visit our store again.."
-              );
-              setCurrentTitle("Your order has been completed");
-              break;
+          if (res.data) {
+            switch (res.data.decision) {
+              case 0:
+                setActiveStep(0);
+                setDescription(
+                  "Your order is in review. Seller will update the state of the order. Check the page for latest progress. Meanwhile, browse new cake designs in out store"
+                );
+                break;
+              case -1:
+                setActiveStep(2);
+                setCurrentTitle("Processing of your order has been failed");
+                setDescription(
+                  "Seller has rejected your order request. You can place a new order by doing the necessary modifications"
+                );
+                break;
+              case 1:
+                setActiveStep(1);
+                setDescription(styleDescription(res.data.modPeriod));
+                setCurrentTitle(
+                  "Your order has been accepted and in the processing"
+                );
+                break;
+              case 5:
+                setActiveStep(2);
+                setDescription(
+                  "Pleasure doing business with you. Visit our store again.."
+                );
+                setCurrentTitle("Your order has been completed");
+                break;
+              default:
+                window.location = "/unauthorized";
+            }
           }
-        }
-      });
+        });
+    }
   }, []);
 
   const darkTheme = createTheme({

@@ -106,6 +106,8 @@ function ColorlibStepIcon(props) {
 
 export default function UpdateOrder() {
   const { id } = useParams();
+  const user = localStorage.getItem("FirstName");
+
   const [image, setImage] = React.useState("");
   const [cakeType, setCakeType] = useState("");
   const [sugarType, setSugarType] = useState("");
@@ -192,7 +194,7 @@ export default function UpdateOrder() {
       .delete(BACKEND_DOMAIN + "/api/orders/deletecustomerorder/" + id)
       .then((res) => {
         alert(res.data);
-        window.location = "/";
+        window.location = "/prevorders";
       })
       .catch((err) => {
         alert(err);
@@ -226,18 +228,24 @@ export default function UpdateOrder() {
   };
 
   useEffect(() => {
-    axios.get(BACKEND_DOMAIN + "/api/orders/getOrderData/" + id).then((res) => {
-      console.log(res.data);
-      setImage(res.data.cakeImage);
-      setCakeType(res.data.cakeType);
-      setSugarType(res.data.sugar);
-      setSize(res.data.size);
-      setQuantity(res.data.quantity);
-      setFlavour(res.data.flavour);
-      setCakeText(res.data.cakeText);
-      setAccessories(res.data.accessories);
-      setIngredients(res.data.ingredients);
-    });
+    if (user === "" || user === null) {
+      window.location = "/unauthorized";
+    } else {
+      axios
+        .get(BACKEND_DOMAIN + "/api/orders/getOrderData/" + id)
+        .then((res) => {
+          console.log(res.data);
+          setImage(res.data.cakeImage);
+          setCakeType(res.data.cakeType);
+          setSugarType(res.data.sugar);
+          setSize(res.data.size);
+          setQuantity(res.data.quantity);
+          setFlavour(res.data.flavour);
+          setCakeText(res.data.cakeText);
+          setAccessories(res.data.accessories);
+          setIngredients(res.data.ingredients);
+        });
+    }
   }, []);
 
   return (

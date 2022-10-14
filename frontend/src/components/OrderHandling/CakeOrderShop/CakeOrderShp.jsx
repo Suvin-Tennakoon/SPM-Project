@@ -46,27 +46,28 @@ const Input = styled(MuiInput)`
 
 export default function CakeOrderShp() {
   const { id } = useParams();
+  const seller = localStorage.getItem("FirstName");
 
   const [order, setOrder] = useState({});
-  const [need, isNeed] = useState(true);
   const [decision, setDecision] = useState(1);
   const [expanded, setExpanded] = React.useState(false);
   const [amount, setAmount] = useState("");
-  const [advAmount, setAdvAmount] = useState("");
   const [modPeriod, setModPeriod] = useState("");
   const [openSnak, setOpenSnak] = useState(false);
   const [errormsg, setErrormsg] = useState("");
   const [rejectReason, setRejectReason] = useState("");
 
-  const needAdvance = () => {
-    isNeed(!need);
-  };
-
   useEffect(() => {
-    axios.get(BACKEND_DOMAIN + "/api/orders/getOrderData/" + id).then((res) => {
-      console.log(res.data);
-      setOrder(res.data);
-    });
+    if (seller === "" || seller === null) {
+      window.location = "/unauthorized";
+    } else {
+      axios
+        .get(BACKEND_DOMAIN + "/api/orders/getOrderData/" + id)
+        .then((res) => {
+          console.log(res.data);
+          setOrder(res.data);
+        });
+    }
   }, [id]);
 
   const darkTheme = createTheme({
@@ -91,14 +92,10 @@ export default function CakeOrderShp() {
       } else if (modPeriod === "") {
         setErrormsg("Enter the AD Modifiable Period");
         setOpenSnak(true);
-      } else if (need && advAmount === "") {
-        setErrormsg("Enter an Advance Payment");
-        setOpenSnak(true);
       } else {
         const data = {
           amount,
           modPeriod,
-          advAmount,
         };
         axios
           .put(
@@ -371,35 +368,6 @@ export default function CakeOrderShp() {
                     </span>
                   </div>
                   <br />
-                  <div class="input-group">
-                    <span
-                      class="input-group-text"
-                      style={{
-                        backgroundColor: "black",
-                        color: "white",
-                        overflow: "hidden",
-                      }}
-                    >
-                      Advance Payment Needed ?
-                    </span>
-
-                    <span>
-                      <Switch
-                        defaultChecked
-                        color="warning"
-                        onChange={needAdvance}
-                      />
-                    </span>
-                    <input
-                      type="number"
-                      disabled={!need}
-                      aria-label="advam"
-                      placeholder="Advance Payment"
-                      onChange={(e) => setAdvAmount(e.target.value)}
-                      value={advAmount}
-                      class="form-control"
-                    ></input>
-                  </div>
                 </div>
 
                 <div
