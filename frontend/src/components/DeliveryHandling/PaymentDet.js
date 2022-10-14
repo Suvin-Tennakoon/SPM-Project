@@ -31,7 +31,7 @@ export default function PaymentDet() {
   };
 
   return (
-    <div style={{ marginTop: "120px", paddingLeft: "430px" }}>
+    <div style={{ marginTop: "120px", paddingLeft: "500px" }}>
       <Card
         variant="outlined"
         sx={{ maxWidth: 500, backgroundColor: "#343a40" }}
@@ -43,29 +43,29 @@ export default function PaymentDet() {
           alt="Your Cake Design"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h5" component="div" style={{color:"white"}}>
             Review Order
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            <Typography variant="body1" gutterBottom>
+            <Typography variant="body1" gutterBottom style={{color:"white"}}>
               Order No. :{" "}
             </Typography>
-            #{paymentdet?._id}
-            <br />
-            <br />
-            <Typography variant="body1" gutterBottom>
+            <p style={{color:"#AEB6BF"}}>#{paymentdet?._id}</p>
+          
+            
+            <Typography variant="body1" gutterBottom style={{color:"white"}}>
               Cake Type :{" "}
             </Typography>
-            {paymentdet?.cakeType}
-            <br />
-            <br />
-            <Typography variant="body1" gutterBottom>
+            <p style={{color:"#AEB6BF"}}>{paymentdet?.cakeType}</p>
+            
+            
+            <Typography variant="body1" gutterBottom style={{color:"white"}}>
               Amount:{" "}
             </Typography>
-            {paymentdet?.amount}LKR
-            <br />
-            <br />
-            <Typography variant="body1" gutterBottom>
+            <p style={{color:"#AEB6BF"}}>{paymentdet?.amount}LKR</p>
+           
+            
+            <Typography variant="body1" gutterBottom style={{color:"white"}}>
               Coupon Code:
               <TextField
                 label=""
