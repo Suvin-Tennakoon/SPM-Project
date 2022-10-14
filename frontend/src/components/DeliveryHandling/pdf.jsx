@@ -80,8 +80,8 @@ const Pdf = ({ paymentdet }) => (
       <View style={styles.viewImg}>
         <Image src="/assets/imgs/logo.png" style={styles.headImage}></Image>
       </View>
-      <View >
-        <Image src={paymentdet.cakeImage} ></Image>
+      <View>
+        <Image src={paymentdet.cakeImage}></Image>
       </View>
       <Text>Order No.</Text>
       <Text>{paymentdet._id}</Text>
@@ -105,24 +105,23 @@ const Pdf = ({ paymentdet }) => (
 
 function PdfGen(props) {
   return (
-      <Typography gutterBottom variant="h5" component="div">
-              Invoice
-              <button
-                className="btn btn-outline-primary btn-sm"
-                style={{ marginLeft: "300px" }}
-              >
-     <PDFDownloadLink
-        document={<Pdf paymentdet={props.paymentdet} />}
-        fileName="Invoice.pdf"
+    <Typography gutterBottom variant="h5" component="div">
+      Invoice
+      <button
+        className="btn btn-outline-primary btn-sm"
+        style={{ marginLeft: "300px" }}
       >
-        {({ blob, url, loading, error }) =>
-          loading ? "Loading document..." : "Download"
-        }
-      </PDFDownloadLink>
+        <PDFDownloadLink
+          document={<Pdf paymentdet={props.paymentdet} />}
+          fileName="Invoice.pdf"
+        >
+          {({ blob, url, loading, error }) =>
+            loading ? "Loading document..." : "Download"
+          }
+        </PDFDownloadLink>
       </button>
-      </Typography>
+    </Typography>
   );
 }
-
 
 export default PdfGen;

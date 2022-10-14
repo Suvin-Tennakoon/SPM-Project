@@ -11,14 +11,31 @@ import PdfGen from "./pdf";
 
 export default function PaymentInv(props) {
   const [paymentdet, setPaymentDet] = useState("");
-  const { id } = useParams();
-
+  const [finalvalue, setFinalvalue] = useState(0);
+  const [discount, setDiscount] = useState(0);
+  const { id, code } = useParams();
+  const calculatefinalvalue = (paymentdet) => {
+    const data = { code };
+    axios
+      .post("http://localhost:3001/api/payments/getCouponDiscount", data)
+      .then((res) => {
+        let finalvalue =
+          paymentdet.amount - paymentdet.amount * (parseInt(res.data) / 100);
+        setDiscount(res.data);
+        setFinalvalue(finalvalue);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   useEffect(() => {
     axios
       .get("http://localhost:3001/api/orders/getDataForPayment/" + id)
       .then((res) => {
         setPaymentDet(res.data);
+        calculatefinalvalue(res.data);
       })
+
       .catch((err) => {
         console.log(err);
       });
@@ -38,7 +55,7 @@ export default function PaymentInv(props) {
             alt="Your Cake"
           />
           <CardContent style={{}}>
-            <PdfGen paymentdet={paymentdet}/>
+            <PdfGen paymentdet={paymentdet} />
             <Typography variant="body2" color="text.secondary">
               <span>
                 Order No. : <br />#{paymentdet?._id}
@@ -79,17 +96,15 @@ export default function PaymentInv(props) {
               <br />
               <span>
                 Discount : <br />
-                10%
+                {discount}
               </span>
               <br />
               <br />
               <span>
                 Total : <br />
-                2250.00
+                {finalvalue}
                 <PayherePage ptype={paymentdet.paymentType} />
               </span>
-
-              
             </Typography>
           </CardContent>
         </CardActionArea>
