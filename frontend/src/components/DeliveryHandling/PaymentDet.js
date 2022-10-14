@@ -1,49 +1,123 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
-import 'react-slideshow-image/dist/styles.css';
-export default function PaymentDet() {
+import { useParams } from "react-router-dom";
+import "react-slideshow-image/dist/styles.css";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import { TextField } from "@mui/material";
 
+export default function PaymentDet() {
   const [payments, setPaymentDetails] = useState([]);
+  const [paymentdet, setPaymentDet] = useState("");
+  const { id } = useParams();
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/api/orders/getDataForPayment/" + id)
+      .then((res) => {
+        setPaymentDet(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
-    <div style={{ marginTop: "120px" }}>
-      
-      <div
+    <div style={{ marginTop: "120px", paddingLeft: "430px" }}>
+      <Card variant="outlined" sx={{ maxWidth: 500,backgroundColor:"#343a40" }}>
+        <CardMedia
+          component="img"
+          height="170"
+          image={paymentdet?.cakeImage}
+          alt="Your Cake Design"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Review Order
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            <Typography variant="body1" gutterBottom>
+              Order No. :{" "}
+            </Typography>
+            #{paymentdet?._id}
+            <br />
+            <br />
+            <Typography variant="body1" gutterBottom>
+              Cake Type :{" "}
+            </Typography>
+            {paymentdet?.cakeType}
+            <br />
+            <br />
+            <Typography variant="body1" gutterBottom>
+              Amount:{" "}
+            </Typography>
+            {paymentdet?.amount}LKR
+            <br />
+            <br />
+            <Typography variant="body1" gutterBottom>
+              Coupon Code:
+              <TextField
+                label=""
+                id="outlined-size-small"
+                defaultValue=""
+                size="small"
+              />
+            </Typography>
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small">
+            <a
+              href="#"
+              className="btn btn-primary ml-1"
+              style={{ backgroundColor: "#fe0035" }}
+            >
+              Clear
+            </a>
+          </Button>
+          <Button size="small">
+            <a
+              href={"/PaymentInv/" + id}
+              className="btn btn-primary ml-2"
+              style={{ backgroundColor: "#fe0035" }}
+            >
+              Proceed
+            </a>
+          </Button>
+        </CardActions>
+      </Card>
+
+      {/* <div
         className="container text-dark"
-        style={{ backgroundColor: "#d9d9d9", padding: "20px", width: "50%" }}
+        style={{ padding: "20px", width: "50%" }}
       >
-        
         <article
           class="card"
           style={{
             flex: "0 1 24%",
             marginBottom: "20px",
-            backgroundColor: "#d9d9d9"
           }}
         >
-          
           <div className="card-header">
             <h3>
               Payment Details <b></b>
             </h3>
           </div>
-          
+
           <div className="card-body">
             <div className="form-row">
-              
               <div>
                 <div>
-                  
-                  <span>Order No. : ref323423</span>
+                  <span>Order No. : #{paymentdet?._id}</span>
                   <br />
                   <br />
-
-                  <span>Order Type : Delivery</span>
+                  <span>Cake Type : {paymentdet?.cakeType}</span>
                   <br />
                   <br />
-                  <span>Date | Time : 02/07/2022 | 14:54</span>
-                  <br />
-                  <br />
-                  <span>Amount: 2500.00 lkr</span>
+                  <span>Amount: {paymentdet?.amount}LKR</span>
                   <br />
                   <br />
                   <span>Coupon Code:</span>
@@ -55,27 +129,29 @@ export default function PaymentDet() {
                     </div>
                   </span>
                 </div>
-                
               </div>
-
-              
-
-              
             </div>
           </div>
           <div
             style={{ float: "right", marginTop: "40px", marginBottom: "10px" }}
           >
-            <a href="#" className="btn btn-primary ml-4" style={{ backgroundColor: "#fe0035" }}>
-              Clear Coupon Code
+            <a
+              href="#"
+              className="btn btn-primary ml-4"
+              style={{ backgroundColor: "#fe0035" }}
+            >
+              Clear
             </a>
-            <a href="/PaymentInv" className="btn btn-warning ml-2" style={{ backgroundColor: "#fe0035" }}>
-              Save & Proceed
+            <a
+              href={"/PaymentInv/" + id}
+              className="btn btn-warning ml-2"
+              style={{ backgroundColor: "#fe0035" }}
+            >
+              Proceed
             </a>
           </div>
         </article>
-      </div>
-      
+      </div> */}
     </div>
   );
 }
