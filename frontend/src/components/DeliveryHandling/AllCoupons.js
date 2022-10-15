@@ -18,7 +18,7 @@ export default function RecordList() {
   useEffect(() => {
     async function getRecords() {
       const response = await fetch(
-        `http://localhost:3001/api/payments/get/coupon`
+        `https://cake-hut-app-backend.azurewebsites.net/api/payments/get/coupon`
       );
 
       if (!response.ok) {

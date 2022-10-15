@@ -17,7 +17,10 @@ export default function PaymentInv(props) {
   const calculatefinalvalue = (paymentdet) => {
     const data = { code };
     axios
-      .post("http://localhost:3001/api/payments/getCouponDiscount", data)
+      .post(
+        "https://cake-hut-app-backend.azurewebsites.net/api/payments/getCouponDiscount",
+        data
+      )
       .then((res) => {
         let finalvalue =
           paymentdet.amount - paymentdet.amount * (parseInt(res.data) / 100);
@@ -30,7 +33,10 @@ export default function PaymentInv(props) {
   };
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/orders/getDataForPayment/" + id)
+      .get(
+        "https://cake-hut-app-backend.azurewebsites.net/api/orders/getDataForPayment/" +
+          id
+      )
       .then((res) => {
         setPaymentDet(res.data);
         calculatefinalvalue(res.data);

@@ -152,39 +152,42 @@ const RegisterUser = () => {
             console.log("Sending User Data...", userData);
 
             let data = await axios
-                .post('http://localhost:3001/api/customers/', {
-                    userId: userId,
-                    firstName: firstName,
-                    middleName: middleName,
-                    lastName: lastName,
-                    email: email,
-                    dateOfBirth: dateOfBirth,
-                    mobile: mobile,
-                    accountType: accountType,
-                    password: password,
-                    status: '0'
-                })
-                .then((res) => {
-                    console.log("Saved User: ", res.data);
-                    //alert('Registration Success...');
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'User Registered!',
-                        text: 'Your data has been successfully inserted. please check your email...',
-                    })
-                    setIsLoading(false);
-                    sendEmail(e);
-                    navigate('/');
-                })
-                .catch((err) => {
-                    // Swal.fire({
-                    //     icon: 'error',
-                    //     title: ' Insert Failed!',
-                    //     text: (err.response.data),
-                    // })
-                    setIsLoading(false);
-                    console.log(err);
-                })
+              .post(
+                "https://cake-hut-app-backend.azurewebsites.net/api/customers/",
+                {
+                  userId: userId,
+                  firstName: firstName,
+                  middleName: middleName,
+                  lastName: lastName,
+                  email: email,
+                  dateOfBirth: dateOfBirth,
+                  mobile: mobile,
+                  accountType: accountType,
+                  password: password,
+                  status: "0",
+                }
+              )
+              .then((res) => {
+                console.log("Saved User: ", res.data);
+                //alert('Registration Success...');
+                Swal.fire({
+                  icon: "success",
+                  title: "User Registered!",
+                  text: "Your data has been successfully inserted. please check your email...",
+                });
+                setIsLoading(false);
+                sendEmail(e);
+                navigate("/");
+              })
+              .catch((err) => {
+                // Swal.fire({
+                //     icon: 'error',
+                //     title: ' Insert Failed!',
+                //     text: (err.response.data),
+                // })
+                setIsLoading(false);
+                console.log(err);
+              });
         }
 
     }

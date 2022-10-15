@@ -35,7 +35,10 @@ export default function Addcouponcode() {
 
   const onSubmit = (values) => {
     axios
-      .post("http://localhost:3001/api/payments/coupon", values)
+      .post(
+        "https://cake-hut-app-backend.azurewebsites.net/api/payments/coupon",
+        values
+      )
       .then((res) => {
         alert("New coupon Added.");
         console.log(res.data);

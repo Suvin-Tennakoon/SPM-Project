@@ -16,7 +16,9 @@ export default function RecordList() {
   // This method fetches the payments from the database.
   useEffect(() => {
     async function getRecords() {
-      const response = await fetch(`http://localhost:3001/api/payments/get`);
+      const response = await fetch(
+        `https://cake-hut-app-backend.azurewebsites.net/api/payments/get`
+      );
 
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;

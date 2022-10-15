@@ -21,7 +21,7 @@ class DisplayDesigns extends React.Component {
     const result = window.confirm("Confirm to delete this design");
     if (result == true) {
       axios
-        .delete("http://localhost:3001/api/shops/delete/" + id)
+        .delete("https://cake-hut-app-backend.azurewebsites.net/api/shops/delete/" + id)
         .then(() => {
           // alert("Cake design is deleted successfully");
         })
@@ -35,7 +35,7 @@ class DisplayDesigns extends React.Component {
     const name = localStorage.getItem("FirstName");
     console.log(name)
     axios
-      .get("http://localhost:3001/api/shops/getdesign/"+name)
+      .get("https://cake-hut-app-backend.azurewebsites.net/api/shops/getdesign/"+name)
       .then((res) => {
         //get all info about a supplier
         this.setState({ designs: res.data });

@@ -19,7 +19,7 @@ class DisplayallDesigns extends React.Component {
   componentDidMount() {
     
     axios
-      .get("http://localhost:3001/api/shops/all")
+      .get("https://cake-hut-app-backend.azurewebsites.net/api/shops/all")
       .then((res) => {
         //get all info about a supplier
         this.setState({ alldesigns: res.data });

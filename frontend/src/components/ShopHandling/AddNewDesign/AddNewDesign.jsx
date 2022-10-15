@@ -16,9 +16,7 @@ class AddNewDesign extends React.Component {
     this.setshopname = this.setshopname.bind(this);
     this.addnewdesign = this.addnewdesign.bind(this);
     // this.onFileUpload = this.onFileUpload.bind(this);
-    this. handleImage = this.handleImage.bind(this)
-   
-
+    this.handleImage = this.handleImage.bind(this);
 
     this.state = {
       dname: "",
@@ -53,8 +51,6 @@ class AddNewDesign extends React.Component {
     this.setState({ shname: e.target.value });
   }
 
-
-
   // onFileUpload(e) {
   //   if (this.state.selectedFile != null) {
   //     const file = new FormData();
@@ -68,7 +64,7 @@ class AddNewDesign extends React.Component {
   //     // Details of the uploaded file
   //     console.log(this.state.selectedFile);
 
-  //     axios.post("http://localhost:3001/api/shops/upload", file).then((req) => {
+  //     axios.post("https://cake-hut-app-backend.azurewebsites.net/api/shops/upload", file).then((req) => {
   //       this.setState({ url: req.data });
   //     });
   //   } else {
@@ -77,7 +73,6 @@ class AddNewDesign extends React.Component {
   // }
 
   handleImage(e) {
-    
     const file = e.target.files[0];
     const fileReader = new FileReader();
     if (e.target.value.length) {
@@ -85,10 +80,10 @@ class AddNewDesign extends React.Component {
       fileReader.readAsDataURL(file);
       fileReader.onload = () => {
         let base64 = fileReader.result;
-        this.setState({dimage:base64});
+        this.setState({ dimage: base64 });
       };
     } else {
-      this.setImage({dimage:""});
+      this.setImage({ dimage: "" });
     }
   }
 
@@ -107,7 +102,10 @@ class AddNewDesign extends React.Component {
       newdesign.username != ""
     ) {
       axios
-        .post("http://localhost:3001/api/shops/add", newdesign)
+        .post(
+          "https://cake-hut-app-backend.azurewebsites.net/api/shops/add",
+          newdesign
+        )
         .then(() => {
           alert("New Design is Added Successfully");
           window.location = "/displaydesign";
@@ -130,54 +128,54 @@ class AddNewDesign extends React.Component {
             <h3>Add New Designs</h3>
             <h4>Add new designs for our CakeHut</h4>
             <div className="fieldsetchamodi">
-            <fieldset>
-              <input
-                placeholder="Your Name"
-                type="text"
-                id="inputchamodi"
-                tabindex="1"
-                onChange={this.setshopname}
-                value={this.state.shname}
-                required
-                autofocus
-              />
-            </fieldset>
-            <fieldset>
-              <input
-                placeholder="Design name"
-                type="text"
-                tabindex="1"
-                id="inputchamodi"
-                onChange={this.setdesignname}
-                value={this.state.dname}
-                required
-                autofocus
-              />
-            </fieldset>
-            <fieldset>
-              <textarea
-                placeholder="Details about Design"
-                tabindex="2"
-                id="textareachamodi"
-                value={this.state.ddetails}
-                onChange={this.setdesigndetails}
-                required
-              ></textarea>
-            </fieldset>
-            <fieldset>
-              <input
-                placeholder="Price"
-                type="text"
-                tabindex="3"
-                id="inputchamodi"
-                onChange={this.setdesignprice}
-                value={this.state.dprice}
-                required
-                autofocus
-              />
-            </fieldset>
-            <fieldset>
-              {/* <input
+              <fieldset>
+                <input
+                  placeholder="Your Name"
+                  type="text"
+                  id="inputchamodi"
+                  tabindex="1"
+                  onChange={this.setshopname}
+                  value={this.state.shname}
+                  required
+                  autofocus
+                />
+              </fieldset>
+              <fieldset>
+                <input
+                  placeholder="Design name"
+                  type="text"
+                  tabindex="1"
+                  id="inputchamodi"
+                  onChange={this.setdesignname}
+                  value={this.state.dname}
+                  required
+                  autofocus
+                />
+              </fieldset>
+              <fieldset>
+                <textarea
+                  placeholder="Details about Design"
+                  tabindex="2"
+                  id="textareachamodi"
+                  value={this.state.ddetails}
+                  onChange={this.setdesigndetails}
+                  required
+                ></textarea>
+              </fieldset>
+              <fieldset>
+                <input
+                  placeholder="Price"
+                  type="text"
+                  tabindex="3"
+                  id="inputchamodi"
+                  onChange={this.setdesignprice}
+                  value={this.state.dprice}
+                  required
+                  autofocus
+                />
+              </fieldset>
+              <fieldset>
+                {/* <input
                 placeholder="Upload Image"
                 type="file"
                 tabindex="4"
@@ -198,26 +196,26 @@ class AddNewDesign extends React.Component {
                 }}
               /> */}
 
-              <input
-                type="file"
-                className="form-control,buttonch"
-                id="formFile"
-                accept="image/*"
-                onChange={(e) => this.handleImage(e)}
-              />
-            </fieldset>
-            <fieldset>
-              <button
-                name="submit"
-                type="submit"
-                className="buttonch"
-                id="contact-submit"
-                data-submit="...Sending"
-                onClick={this.addnewdesign}
-              >
-                Add
-              </button>
-            </fieldset>
+                <input
+                  type="file"
+                  className="form-control,buttonch"
+                  id="formFile"
+                  accept="image/*"
+                  onChange={(e) => this.handleImage(e)}
+                />
+              </fieldset>
+              <fieldset>
+                <button
+                  name="submit"
+                  type="submit"
+                  className="buttonch"
+                  id="contact-submit"
+                  data-submit="...Sending"
+                  onClick={this.addnewdesign}
+                >
+                  Add
+                </button>
+              </fieldset>
             </div>
           </div>
         </div>

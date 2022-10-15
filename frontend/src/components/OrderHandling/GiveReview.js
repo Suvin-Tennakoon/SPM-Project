@@ -23,58 +23,61 @@ export default function GiveReview() {
     const [count, setCount] = React.useState(0);
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/api/orders/getOrderData/${id}`)
-            .then((res) => {
-                console.log(res.data);
-                setType(res.data.cakeType);
-                setCustomer(res.data.customer);
-                setDate(res.data.deliverDate);
-                setImage(res.data.cakeImage);
-                setFlavour(res.data.flavour);
-                setPayment(res.data.paymentType);
-                setSeller(res.data.seller);
-                setSize(res.data.size);
-            })
-    }, [])
+      axios
+        .get(
+          `https://cake-hut-app-backend.azurewebsites.net/api/orders/getOrderData/${id}`
+        )
+        .then((res) => {
+          console.log(res.data);
+          setType(res.data.cakeType);
+          setCustomer(res.data.customer);
+          setDate(res.data.deliverDate);
+          setImage(res.data.cakeImage);
+          setFlavour(res.data.flavour);
+          setPayment(res.data.paymentType);
+          setSeller(res.data.seller);
+          setSize(res.data.size);
+        });
+    }, []);
 
     const handlereviewChange = (e) => {
-
-        setCount(e.target.value.length)
-        e.preventDefault();
-        setReview(e.target.value);
-    }
+      setCount(e.target.value.length);
+      e.preventDefault();
+      setReview(e.target.value);
+    };
 
     const saveReview = async (e) => {
-        e.preventDefault();
+      e.preventDefault();
 
-        const dataSet = {
-            orderId: id,
-            review: review
+      const dataSet = {
+        orderId: id,
+        review: review,
+      };
+
+      let data = await axios.post(
+        "https://cake-hut-app-backend.azurewebsites.net/api/customers/savereview",
+        {
+          orderId: id,
+          review: review,
         }
+      );
+      console.log("Saved data ", data);
 
-        let data = await axios.post('http://localhost:3001/api/customers/savereview', {
-            orderId: id,
-            review: review
+      if (data.status !== 200) {
+        Swal.fire({
+          icon: "error",
+          title: " Insert Failed!",
+          text: "Error While Inserting...",
         });
-        console.log("Saved data ", data)
-
-        if (data.status !== 200) {
-            Swal.fire({
-                icon: 'error',
-                title: ' Insert Failed!',
-                text: 'Error While Inserting...',
-            })
-        }
-        else {
-            Swal.fire({
-                icon: 'success',
-                title: 'Review added!',
-                text: '',
-            })
-            navigate('/userprof');
-
-        }
-    }
+      } else {
+        Swal.fire({
+          icon: "success",
+          title: "Review added!",
+          text: "",
+        });
+        navigate("/userprof");
+      }
+    };
 
     return (
         <div className='container' style={{ marginTop: "120px" }}>
