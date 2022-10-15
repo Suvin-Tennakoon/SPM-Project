@@ -35,7 +35,7 @@ export default function QR(props) {
   const generateQrCode = async () => {
     try {
       const response = await QRCode.toDataURL(
-        FRONTEND_DOMAIN + "/acceptedOrders/" + props.order
+        FRONTEND_DOMAIN + "/vieworders/" + props.order
       );
       setImageUrl(response);
     } catch (error) {

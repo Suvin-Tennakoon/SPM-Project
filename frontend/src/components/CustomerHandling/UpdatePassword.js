@@ -70,33 +70,36 @@ const UpdatePassword = () => {
 
             console.log("Sending Password and Status Data...", dataSet);
             let data = await axios
-                .put(`http://localhost:3001/api/customers/pass/${id}`, {
-                    password: password,
-                    status: '1',
-                })
-                .then(() => {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Password Updated!',
-                        text: 'Your password has been successfully updated...',
-                    })
-                    //alert('Update Success...');
-                    if (accType === "Student") {
-                        navigate(`/userprof`);
-                        setIsLoading(false);
-                    }
-                    else {
-                        navigate('/userprof');
-                        setIsLoading(false);
-                    }
-                }).catch((err) => {
-                    Swal.fire({
-                        icon: 'error',
-                        title: ' Update Failed!',
-                        text: 'Error While Updating...',
-                    })
-                    console.log(err);
-                })
+              .put(
+                `https://cake-hut-app-backend.azurewebsites.net/api/customers/pass/${id}`,
+                {
+                  password: password,
+                  status: "1",
+                }
+              )
+              .then(() => {
+                Swal.fire({
+                  icon: "success",
+                  title: "Password Updated!",
+                  text: "Your password has been successfully updated...",
+                });
+                //alert('Update Success...');
+                if (accType === "Student") {
+                  navigate(`/userprof`);
+                  setIsLoading(false);
+                } else {
+                  navigate("/userprof");
+                  setIsLoading(false);
+                }
+              })
+              .catch((err) => {
+                Swal.fire({
+                  icon: "error",
+                  title: " Update Failed!",
+                  text: "Error While Updating...",
+                });
+                console.log(err);
+              });
             console.log("Updated Data: ", data);
         }
 

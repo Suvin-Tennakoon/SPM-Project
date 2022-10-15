@@ -17,7 +17,10 @@ class Acceptedorders extends React.Component {
     const name = localStorage.getItem("FirstName")
     console.log(name)
     axios
-      .get("http://localhost:3001/api/orders/getAcceptedOrders/"+name)
+      .get(
+        "https://cake-hut-app-backend.azurewebsites.net/api/orders/getAcceptedOrders/" +
+          name
+      )
       .then((res) => {
         this.setState({ Acceptorders: res.data });
       })

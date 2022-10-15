@@ -10,13 +10,16 @@ import "./Vieworder.css";
   const {id}= useParams();
 useEffect(()=> {
   axios
-  .get("http://localhost:3001/api/orders/getOrderData/" + id)
-  .then((res) => {
-    setViewOrders(res.data)
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+    .get(
+      "https://cake-hut-app-backend.azurewebsites.net/api/orders/getOrderData/" +
+        id
+    )
+    .then((res) => {
+      setViewOrders(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 },[])
 
  

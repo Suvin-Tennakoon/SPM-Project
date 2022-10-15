@@ -25,8 +25,10 @@ export default function Login() {
         e.preventDefault();
 
         console.log("Inserted Data: ", formData.email)
-        let data = await axios
-            .post('http://localhost:3001/api/customers/login', formData)
+        let data = await axios.post(
+          "https://cake-hut-app-backend.azurewebsites.net/api/customers/login",
+          formData
+        );
         console.log("data", data?.data)
 
         if (formData.email) {

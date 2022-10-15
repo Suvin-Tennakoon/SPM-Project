@@ -26,72 +26,79 @@ export default function UpdateProf() {
         email: ""
     })
 
-    const changeOnClick = e => {
-        e.preventDefault();
+    const changeOnClick = (e) => {
+      e.preventDefault();
 
-        const formData = new FormData();
+      const formData = new FormData();
 
-        formData.append("img", img);
-        formData.append("firstName", firstName);
-        formData.append("middleName", middleName);
-        formData.append("lastName", lastName);
-        formData.append("dateOfBirth", dateOfBirth);
-        formData.append("mobile", mobile);
-        formData.append("email", email);
+      formData.append("img", img);
+      formData.append("firstName", firstName);
+      formData.append("middleName", middleName);
+      formData.append("lastName", lastName);
+      formData.append("dateOfBirth", dateOfBirth);
+      formData.append("mobile", mobile);
+      formData.append("email", email);
 
-        setImg("");
-        setFirstName("");
-        setMiddleName("");
-        setLastName("");
-        setMobile("");
-        setDateOfBirth("");
-        setEmail("");
+      setImg("");
+      setFirstName("");
+      setMiddleName("");
+      setLastName("");
+      setMobile("");
+      setDateOfBirth("");
+      setEmail("");
 
-        console.log(formData.get('lastName'));
+      console.log(formData.get("lastName"));
 
-        userDetails.img = formData.get('img');
-        userDetails.firstName = formData.get('firstName');
-        userDetails.middleName = formData.get('middleName');
-        userDetails.lastName = formData.get('lastName');
-        userDetails.dateOfBirth = formData.get('dateOfBirth');
-        userDetails.mobile = formData.get('mobile');
-        userDetails.email = formData.get('email');
+      userDetails.img = formData.get("img");
+      userDetails.firstName = formData.get("firstName");
+      userDetails.middleName = formData.get("middleName");
+      userDetails.lastName = formData.get("lastName");
+      userDetails.dateOfBirth = formData.get("dateOfBirth");
+      userDetails.mobile = formData.get("mobile");
+      userDetails.email = formData.get("email");
 
-        console.log(userDetails);
+      console.log(userDetails);
 
-        //validations
+      //validations
 
-        axios.put(`http://localhost:3001/api/customers/${id.id}`, userDetails)
-            .then(res =>
-                //alert(res.data.message),
-                navigate('/userprof')
-            )
-            .catch(err => {
-                alert("update failed")
-                console.log(err);
-            });
+      axios
+        .put(
+          `https://cake-hut-app-backend.azurewebsites.net/api/customers/${id.id}`,
+          userDetails
+        )
+        .then((res) =>
+          //alert(res.data.message),
+          navigate("/userprof")
+        )
+        .catch((err) => {
+          alert("update failed");
+          console.log(err);
+        });
     };
 
     const handleInputState = (name, value) => {
-        setUserDetails((prev) => ({ ...prev, [name]: value }));
+      setUserDetails((prev) => ({ ...prev, [name]: value }));
     };
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/api/customers/${id.id}`)
+      axios
+        .get(
+          `https://cake-hut-app-backend.azurewebsites.net/api/customers/${id.id}`
+        )
 
-            .then(res => [
-                console.log(res.data),
-                setFirstName(res.data.img),
-                setFirstName(res.data.firstName),
-                setMiddleName(res.data.middleName),
-                setLastName(res.data.lastName),
-                setDateOfBirth(res.data.dateOfBirth),
-                setMobile(res.data.mobile),
-                setEmail(res.data.email),
-            ])
+        .then((res) => [
+          console.log(res.data),
+          setFirstName(res.data.img),
+          setFirstName(res.data.firstName),
+          setMiddleName(res.data.middleName),
+          setLastName(res.data.lastName),
+          setDateOfBirth(res.data.dateOfBirth),
+          setMobile(res.data.mobile),
+          setEmail(res.data.email),
+        ])
 
-            .catch((err) => console.log(err));
-    }, [])
+        .catch((err) => console.log(err));
+    }, []);
 
     return (
         <div style={{ marginTop: "120px" }}>

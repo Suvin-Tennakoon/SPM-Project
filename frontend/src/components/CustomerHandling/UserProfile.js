@@ -12,11 +12,14 @@ export default function UserProfile() {
     const [userDetails, setUserDetails] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/api/customers?email=${userEmail}`)
-            .then((res) => {
-                console.log(res.data);
-                setUserDetails(res.data);
-            })
+        axios
+          .get(
+            `https://cake-hut-app-backend.azurewebsites.net/api/customers?email=${userEmail}`
+          )
+          .then((res) => {
+            console.log(res.data);
+            setUserDetails(res.data);
+          });
     }, [])
 
     return (

@@ -9,11 +9,14 @@ export default function PrevOrders() {
   const [orderDetails, setOrderDetails] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/orders/getCakeforCustomer/${fname}`)
+    axios
+      .get(
+        `https://cake-hut-app-backend.azurewebsites.net/api/orders/getCakeforCustomer/${fname}`
+      )
       .then((res) => {
         console.log(res.data);
         setOrderDetails(res.data);
-      })
+      });
   }, [])
 
 

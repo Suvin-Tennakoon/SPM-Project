@@ -16,11 +16,16 @@ function Updatedesign(props) {
 
   useEffect(() => {
     let getdesign = () => {
-      axios.get("http://localhost:3001/api/shops/getone/" + id).then((res) => {
-        setdesignname(res.data.designname);
-        setdesigndetails(res.data.designdetails);
-        setdesignprice(res.data.designprice);
-      });
+      axios
+        .get(
+          "https://cake-hut-app-backend.azurewebsites.net/api/shops/getone/" +
+            id
+        )
+        .then((res) => {
+          setdesignname(res.data.designname);
+          setdesigndetails(res.data.designdetails);
+          setdesignprice(res.data.designprice);
+        });
     };
 
     getdesign();
@@ -36,7 +41,10 @@ function Updatedesign(props) {
     };
 
     axios
-      .put("http://localhost:3001/api/shops/update/" + id, updatedesign)
+      .put(
+        "https://cake-hut-app-backend.azurewebsites.net/api/shops/update/" + id,
+        updatedesign
+      )
       .then(() => {
         // alert("Design is updated successfully");
         window.location = "/displaydesign";

@@ -15,7 +15,7 @@ class ViewCoupons extends Component {
   }
 
   retrieveCouponDetails() {
-    axios.get("http://localhost:3001/api/payments/get/coupon").then((res) => {
+    axios.get("https://cake-hut-app-backend.azurewebsites.net/api/payments/get/coupon").then((res) => {
       if (res.data != null) {
         this.setState({ couponDetails: res.data });
       }
@@ -24,7 +24,7 @@ class ViewCoupons extends Component {
 
   onDelete = (id) => {
     axios
-      .delete(`http://localhost:3001/api/payments/delete/coupon/${id}`)
+      .delete(`https://cake-hut-app-backend.azurewebsites.net/api/payments/delete/coupon/${id}`)
       .then((res) => {
         alert("Delete Successfully");
         this.retrieveCouponDetails();
@@ -45,11 +45,15 @@ class ViewCoupons extends Component {
   handleSearchArea = (e) => {
     const searchKey = e.currentTarget.value;
 
-    axios.get("http://localhost:3001/api/payments/get/coupon").then((res) => {
-      if (res.data) {
-        this.filterData(res.data, searchKey);
-      }
-    });
+    axios
+      .get(
+        "https://cake-hut-app-backend.azurewebsites.net/api/payments/get/coupon"
+      )
+      .then((res) => {
+        if (res.data) {
+          this.filterData(res.data, searchKey);
+        }
+      });
   };
 
   render() {

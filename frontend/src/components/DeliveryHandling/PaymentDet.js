@@ -17,7 +17,10 @@ export default function PaymentDet() {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/orders/getDataForPayment/" + id)
+      .get(
+        "https://cake-hut-app-backend.azurewebsites.net/api/orders/getDataForPayment/" +
+          id
+      )
       .then((res) => {
         setPaymentDet(res.data);
       })
