@@ -4,6 +4,7 @@ import { Container, Radio, Rating } from "./RatingStyles";
 
 const Rate = () => {
   const [rate, setRate] = useState(0);
+
   return (
     <div style={{marginTop:"200px"}}>
       <h3 class="text-primary" style={{paddingLeft:"550px"}}>How was your experience so far !</h3>
